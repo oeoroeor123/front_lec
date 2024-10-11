@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>link</title>
+</head>
+<body>
+  <!-- 
+    a 태그
+    1. 하이퍼링크를 만드는 태그
+    2. 서버로 요청할 때 사용
+    3. 주요 속성
+      1) href : 서버 경로 작성 (필수)
+      2) target : 어떤 창으로 이동하는지 결정
+        (1) _self : 현재 창으로 이동 (디폴트_지정안하면 기본값)
+        (2) _blank : 새 창으로 이동
+    4. '인라인' 요소, 따라서 a태그로 블록 요소를 묶지 않도록 주의! ex) div 태그(블록) 안에 a 태그(인라인) 넣기
+   -->
+   <div>
+    <a href="https://www.google.com/">구글</a>
+   </div>
+
+   <div>
+    <a href="https://www.google.com/"><img src="../assets/images/logo_google.png" alt="구글 로고"></a>
+   </div>
+
+   <div>
+    <ul>
+      <li><a href="">정치</a></li>
+      <li><a href="">경제</a></li>
+    </ul>
+   </div>
+
+   <hr>
+   <!-- 특정 id 속성으로 이동하는 경우 -->
+   <!-- #part1, #part2 주소창 맨 뒤에 붙은 refernce -->
+   <div id="part1">파트1</div>
+   <br><br><br>
+   <div id="part2">파트2</div>
+   <br><br><br>
+
+   <div>
+    <a href="#part1">파트1로 이동</a>
+   </div>
+   <div>
+    <a href="#part2">파트2로 이동</a>
+   </div>
+
+   
+
+</body>
+</html>

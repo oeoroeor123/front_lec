@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+</head>
+<body>
+  
+  <!-- 
+    테이블
+    1. table 태그, tr 태그, td 태그가 핵심 태그
+      1) table 태그 : 테이블의 시작과 종료를 담당
+      2) tr 태그 : 테이블의 행(row)을 담당 _줄
+      3) td 태그 : 테이블의 열(column)을 담당 _칸
+      4) th 태그 : 테이블 열 담당 + 칸 안에 굵음 + 가운데 효과
+    2. table의 영역은 3개 부분으로 나눠짐
+      1) thead 태그 : 테이블 머리말 (선택_일반적으로 제목 행 부분)
+      2) tbody 태그 : 테이블 본문 (필수)
+      3) tfoot 태그 : 테이블 꼬리말 (선택)
+    3. 형식 (ex_줄 2개, 칸 3개 예시)
+      <table>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+   -->
+   <table border="1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+      </tr>
+    </tbody>
+   </table>
+
+   <!-- 
+    셀 병합하기
+    1. td 태그에 병합 속성을 추가해 처리
+    2. 병합 속성 
+      1) colspan : 좌우 셀 병합
+      2) rowspan : 상하 셀 병합
+   -->
+
+   <table border="1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td colspan="2">e</td>
+      </tr>
+      <tr>
+        <td colspan="3">f</td>
+      </tr>
+    </tbody>
+   </table>
+
+   <table border="1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td rowspan="3">c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td rowspan="2">e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+      </tr>
+    </tbody>
+   </table>
+   
+  </body>
+</html>
