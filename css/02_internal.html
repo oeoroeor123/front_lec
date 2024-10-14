@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>internal</title>
+  <style>
+    h1 {
+      color: magenta;
+    }
+    #title {
+      color:blue;
+    }
+    .title {
+      color: yellow;
+    }
+
+    h2 {
+      color: brown;
+    }
+    #sjlee {
+      color:aqua;
+    }
+    .sjlee {
+      color:beige;
+    }
+
+    h3 {
+      color: purple;
+    }
+    #jk {
+      font-size: 50px;
+    }
+    .jk {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- 
+    internal 방식
+    1. <style> 태그를 추가하고 css 문법을 작성
+    2. <style> 태그는 <head> 태그나 <body> 태그에 작성
+       "실제로는 <head> 태그에 작성"해야 하나, <body> 태그에 작성해도 동작은 함
+  -->
+   
+   <!--
+    선택자
+    1. selector
+    2. 어떤 html 요소를 가리키는 방법
+    3. 주요 선택자
+      1) 태그 선택자 : 태그 이름을 그대로 작성
+      2) id 선택자 : #id 형식으로 작성
+      3) class 선택자 : .class 형식으로 작성
+   -->
+   <h1 id="title" class="title">hello world</h1>
+   <h2 id="sjlee" class="sjlee">hello world</h2>
+   <h3 id="jk" class="jk">hello world</h3>
+
+</body>
+</html>

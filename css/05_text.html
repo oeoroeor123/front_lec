@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text</title>
+  <style>
+    #title1 {
+      color: red;
+      color: #c254de; /* #000000 ~ #ffffff 사이만 지정 가능 ★16진수 공부해보기 */
+      color: rgb(173, 196, 96); /* rgb : 0 ~ 255 사이만 지정 가능 */
+      color: rgba(0, 0, 0, 0.5); /* alpha : 투명도 지정 (0:투명, 1:불투명) */
+    }
+    
+    #title2 {
+      /* 글꼴 : 'Gill Sans' 적용, 없으면 'Gill Sans MT'적용, sans-serif 적용 */
+      /* sans-serif : 고딕 계열 글꼴, serif : 명조 계열 글꼴 */
+      font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+      font-family: 'Times New Roman', Times, serif;
+      
+      /* 크기 */
+      font-size: 48px;
+      font-size: 1.1em; /*1em : 기본 디폴트 폰트 크기(16px), 1.1em : 기본 폰트 크기에 1.1배 크기 (17.6px) */
+      font-size: 80px;
+      
+      /* 굵기 */
+      font-weight: 100; /* 가장 얇은 굵기, thin */
+      font-weight: 400; /* 기본 디폴트 굵기, regular */
+      font-weight: 900; /* 가장 굵은 굵기, black */
+
+      /* 모양 */
+      font-style: normal; /* 디폴트 모양 */
+      font-style: italic; /* 기울인 모양 */
+      font-style: oblique; /* 비스듬한 모양 */
+    }
+
+      #title3 {
+        /* 자간 */
+        letter-spacing: -0.5px;
+        letter-spacing: 30px;
+        
+        /* 꾸미기 (밑줄, 윗줄, 취소선) */
+        text-decoration: underline;
+        text-decoration: none;
+        text-decoration: line-through;
+
+        /* 행높이 */
+        line-height: 64px; /* 주로 텍스트 세로 가운데 맞춤용으로 사용 */
+        line-height: 100px;
+      }
+
+      #title4 {
+        /* 벤더 프리픽스 (vendor prefix) */
+        /* -webkit- : 크롬, 사파리 */
+        /* -moz- : 파이어폭스 */
+        /* -o- : 오페라 */
+        -webkit-text-stroke-color: rebeccapurple;
+        -webkit-text-stroke-width: 2px;
+      }
+
+      #title5 {
+        /* 글자 정렬 : 블록 요소만 정렬 가능 */
+        text-align: center;
+      }
+
+      #title6 {
+        /* span은 인라인 요소로 정렬되지 않으나, display 태그를 써서 블록 요소로 바꾼 후 적용 */
+        text-align: end;
+        display: block;
+      }
+  </style>
+</head>
+<body>
+  
+  <h1 id="title1">hello world</h1>
+  <h1 id="title2">hello world</h1>
+  <h1 id="title3">hello world</h1>
+  <h1 id="title4">hello world</h1>
+  <h1 id="title5">hello world</h1>
+  <span id="title6">hello world</span>
+
+</body>
+</html>

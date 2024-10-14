@@ -87,7 +87,7 @@
     <option selected>한국 +82</option>
     <option>일본 +99</option>
    </select>
-   
+ 
    <!-- value 속성이 없는 경우 : option 태그의 텍스트가 value 속성 값이 된다. / 두개가 같을 경우 value 값 입력 안해도 됨 -->
    <select name="coutry">
     <option value="01">가나 +01</option>
@@ -102,8 +102,8 @@
     1. 입력 또는 목록 선택이 가능
     2. input 태그(입력)와 datalist 태그(목록)를 사용
    -->
-   <input type="text" list="damains">
-   <datalist id="damains">
+   <input type="text" list="domains">
+   <datalist id="domains">
     <option>naver.com</option>
     <option>kakao.com</option>
     <option>gmail.com</option>
@@ -123,6 +123,13 @@
 
     <input type="radio" name="gender" value="woman" id="woman">
     <lable for="woman">여자</lable>
+
+    <select name="color">
+      <option value="1" id="red">red</option>
+      <label for="red"></label>
+      <option value="2" id="sky">sky</option>
+      <label for="sky"></label>
+    </select>
 
   <br>
 
@@ -180,5 +187,14 @@
         이미지만 서버로 보내고 싶을때 (accept="image/*")
         <input type="file" accept="image/*">
        -->
+
+       <!-- 구글 검색 -->
+       <form action="https://www.google.com/search"
+             method="get"
+             enctype="application/x-www-form-urlencoded">
+            <input type="text" name="query">
+            <button type="submit">구글 검색</button>
+            </form>
+
 </body>
 </html>

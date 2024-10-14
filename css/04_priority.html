@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>priority</title>
+  <style>
+    .title {
+      color:red;
+    }
+    h1 {
+      color: blue !important;
+    }
+    #title {
+      color:brown;
+    }
+
+    .title2 {
+      color: navajowhite;
+    }
+    h2 {
+      color: red !important; 
+    }
+    #title2 {
+      color:aqua;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    css 우선 순위
+    낮음                               높음
+    태그(h1) < class < id < inline < !important (css 속성 값 뒤에 그대로 붙히면 됨)
+   -->
+
+   <h1 id="title" class="title" style="color:aqua;">hello world</h1>
+   <h2 id="title2" class="tilte2" style="color:darkgoldenrod;">hello world</h2>
+
+</body>
+</html>
