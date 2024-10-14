@@ -118,13 +118,16 @@
 
   </table>
   <table border="1">
-    <tbody>우리펜션 객실안내
+    <caption>우리펜션 객실안내</caption>
+      <thead>
       <tr>
         <td><strong>방이름</strong></td>
         <td><strong>고객구분</strong></td>
         <td><strong>정원</strong></td>
         <td><strong>가격</strong></td>
       </tr>
+      </thead>
+      <tbody>
       <tr>
         <td>콜로라도</td>
         <td>여성 전용</td>
@@ -143,10 +146,12 @@
         <td>커플 전용</td>
         <td>2인실</td>
       </tr>
+    </tbody>
+    <tfoot>
       <tr>
         <td colspan="4"><strong>전 객실 50% 할인</strong></td>
       </tr>
-    </tbody>
+    </tfoot>
   </table>
 
   <hr>
@@ -174,5 +179,109 @@
         <li><em>Mariadb</em></li>
       </ol>
   </ul>
+
+  <hr>
+
+  <div>
+  <form method="post">
+  <input type="text" placeholder="oeoroeor123@naver.com" name="id">
+  <input type="password" placeholder="비밀번호" name="password">
+  <button type="submit">로그인</button>
+  </form>
+  </div>
+
+  <hr>
+
+  <div>
+    <form method="post">
+  <table> 
+  </tbody>
+
+  <tr>
+  <td> <input type="text" placeholder="아이디"></td>
+  <td rowspan="2"> <button>로그인</button></td>
+  </tr>
+
+  <tr>
+  <td><input type="password" placeholder="비밀번호"></td>
+  </tr>
+
+  </tbody>
+  </table>
+  </form>
+  </div>
+
+  <hr>
+
+  <div>
+  <caption>개인 정보 작성</caption>
+    <br>
+    이름 <input type="text">
+    <br>
+    메일 주소 <input type="email">
+    <br>
+    연락처 <input type="number">
+    <br>
+    블로그/홈페이지 <input type="url">
+    <br>
+    <button type="button">제출하기</button>
+    <button type="button">다시작성</button>
+  </div>
+
+  <hr>
+
+<div> 아이디<input type="text" placeholder="아이디">
+  <button>중복확인</button></div>
+<div> 비밀번호 <input type="password" placeholder="새 비밀번호"></div>
+<div> 비밀번호 확인 <input type="password" placeholder="비밀번호 확인"></div>
+<div> 이메일 <input type="email" placeholder="이메일">
+      @ <input type="text" placeholder="직접 입력 가능" list="email">
+        <datalist id="email">
+          <option>gmail.com</option>
+          <option>naver.com</option>
+          <option>daum.net</option>
+        </datalist> </div>
+<fieldset>
+  <legend>성별</legend>
+  <input type="radio" name="gender" value="man" checked>남자
+  <input type="radio" name="gender" value="woman">여자
+</fieldset>
+
+<fieldset>
+  <legend>관심</legend>
+  <input type="checkbox" name="it">IT
+  <input type="checkbox" name="경영">경영
+  <br>
+  <input type="checkbox" name="금융">금융
+  <input type="checkbox" name="제조">제조
+  <br>
+  <input type="checkbox" name="서비스">서비스
+  <input type="checkbox" name="기타">기타
+</fieldset>
+<div>거주지<select name="home">
+  <option>서울</option>
+  <option>대전</option>
+  <option>대구</option>
+  <option>부산</option>
+  <option>인천</option>
+</select></div>
+
+<div>자기 소개
+  <br>
+  <textarea rows="4" cols="50" placeholder="200자 이내 간단히 작성"></textarea>
+</div>
+
+<div>이력서
+  <input type="file">
+</div>
+
+<div>제출일
+  <input type="text">
+  <br>
+  <button>제출</button>
+  <button>다시입력</button>
+</div>
+
+
 </body>
 </html>

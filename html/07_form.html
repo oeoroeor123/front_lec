@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+</head>
+<body>
+  <!--
+    입력란
+    1. input 태그 (단독 태그)
+    2. 일반 텍스트, 숫자, 이메일, url, 날짜, 시간 등 여러가지 데이터를 입력할 수 있음
+    3. 주요 속성
+      1) type : 입력할 데이터의 종류를 의미 (디폴트 > text) > 일반텍스트 외 규격이 있는 데이터 입력 시 type 필수 입력
+      2) name : 입력란 이름을 의미 > 서버에 데이터 보낼때 name이 있어야 전송 가능
+      3) value : 입력한 데이터를 의미
+      4) readonly : 읽기 전용으로 만드는 태그
+      5) required : 필수 입력을 의미
+      6) disabled : 사용 불가능하게 만드는 태그
+      7) placeholder : 입력 안내 메시지 작성 태그
+    4. '인라인' 요소
+  -->
+
+  <input type="text" placeholder="일반 텍스트">
+  <br>
+  <input type="password" placeholder="비밀번호">
+  <br>
+  <input type="number" placeholder="숫자" min="0" max="10">
+  <br>
+  <input type="email" placeholder="이메일">
+  <br>
+  <input type="url" placeholder="웹 주소">
+  <br>
+  <input type="date">
+  <br>
+  <input type="time">
+  <br>
+  <!-- multiple : 파일 다중 선택 -->
+  <input type="file" multiple>
+  <br>
+  <input type="checkbox">
+  <br>
+  <input type="radio">
+  <br>
+  
+  <!-- checkbox : 다중선택 -->
+  <input type="checkbox" name="hobbies" value="run">달리기
+  <input type="checkbox" name="hobbies" value="swim">수영
+  
+  <!-- checkbox : name 자체에 입력값 넣고 value 생략 가능 -->
+  <input type="checkbox" name="run">달리기
+  <input type="checkbox" name="swim">수영
+
+  <br>
+
+  <!-- radio : 단일선택 (동일한 name 지정 필수, checked 태그 함께 작성)-->
+  <input type="radio" name="gender" value="man" checked>남자
+  <input type="radio" name="gender" value="woman">여자
+  <br>
+
+  <!-- fidldset : 항목 선택 안에 네모 박스 만들기 -->
+   <fieldset>
+    <legend>성별</legend>
+   </fieldset> 
+
+  <!--
+    다중 행 입력란
+    1. textarea 태그
+    2. 주요 속성
+      1) rows : 입력 가능한 행 갯수
+      2) cols : 입력 가능한 열 갯수
+    3. '인라인' 요소
+   -->
+   <textarea rows="5" cols="30"></textarea>
+   <br>
+
+
+   <!-- 
+    목록 상자
+    1. 목록에서 하나 이상의 항목을 선택
+    2. select 태그를 의미
+    3. select 태그의 하위 태그로 option 태그를 사용
+    4. '인라인' 요소
+   -->
+   <select name="coutry">
+    <option>가나 +01</option>
+    <option selected>한국 +82</option>
+    <option>일본 +99</option>
+   </select>
+   
+   <!-- value 속성이 없는 경우 : option 태그의 텍스트가 value 속성 값이 된다. / 두개가 같을 경우 value 값 입력 안해도 됨 -->
+   <select name="coutry">
+    <option value="01">가나 +01</option>
+    <option value="82" selected>한국 +82</option>
+    <option value="99">일본 +99</option>
+   </select>
+   
+   <br>
+
+   <!--
+    콤보 상자
+    1. 입력 또는 목록 선택이 가능
+    2. input 태그(입력)와 datalist 태그(목록)를 사용
+   -->
+   <input type="text" list="damains">
+   <datalist id="damains">
+    <option>naver.com</option>
+    <option>kakao.com</option>
+    <option>gmail.com</option>
+   </datalist>
+   
+   <br>
+
+   <!-- 
+    레이블
+    1. 입력 요소(입력란, 목록상자 등)와 연결할 텍스트를 지정하는 태그
+    2. lable 태그
+    3. 연결할 입력 요소의 id 속성 값을 lable 태그 > for 속성에 작성
+    4. '인라인' 요소
+    -->
+    <input type="radio" name="gender" value="man" id="man" checked>
+    <label for="man">남자</label>
+
+    <input type="radio" name="gender" value="woman" id="woman">
+    <lable for="woman">여자</lable>
+
+  <br>
+
+
+  <!-- 
+    단추
+    1. button 태그를 사용
+    2. 서브밋, 리셋, 사용자 지정 등의 종류가 있음
+    3. type 속성
+      1) type="submit" : 서브밋 (입력 요소들에 입력된 값을 서버로 보냄)
+      2) type="reset" : 리셋 (입력 값을 초기화함)
+      3. type="button" : 사용자 지정 (아무 기능도 없음 > JavaScritp 이용해서 기능 등록)
+    4. '인라인' 요소
+   -->
+   <button type="submit">전송</button>
+   <button type="reset">입력 취소</button>
+   <button type="button">버튼</button>
+
+   <br>
+
+   <!-- 
+    폼 (* 폼에 입력한 데이터는 인코딩하여 서버로 보낸다.)
+    1. 서버 측으로 입력 데이터를 서브밋 할 때 반드시 필요
+    2. form 태그 내부에 입력 요소와 서브밋 버튼을 함께 만듬
+    3. 주요 속성
+      1) action : 서버 경로를 작성
+      2) method : 요청 메소드 작성 (get(공개,디폴트) 또는 post(비공개))
+      3) enctype : 요청 content-type(=MIME 유형)을 작성
+        (1) application/x-www-form-urlencoded : 디폴트, 일반 입력 요소인 경우
+        (2) multipart/form-data : <input type="file">요소가 있는 경우
+    -->
+    <form action="/somewhere"
+          method="get"
+          enctype="application/x-www-form-urlencoded">
+      <input type="text" name="name" placeholder="이름">
+      <br>
+      <input type="numder" name="age" placeholder="나이">
+      <br>
+      <button type="submit">전송</button>
+    </form>
+
+    <br>
+
+    <!-- 네이버 검색 -->
+    <form action="https://search.naver.com/search.naver"
+          method="get"
+          enctype="application/x-www-form-urlencoded">
+        <input type="text" name="query">
+        <button type="submit">네이버 검색</button>
+      </form>
+
+      <br>
+
+      <!--
+        이미지만 서버로 보내고 싶을때 (accept="image/*")
+        <input type="file" accept="image/*">
+       -->
+</body>
+</html>
