@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>padding</title>
+</head>
+<body>
+  
+  <!-- 
+    padding : 테두리와 콘텐츠 사이의 여백 (내부 여백)
+
+    * 여백 개별 지정 속성
+    padding-top, padding-bottom, padding-left, padding-right
+
+    * 내부 여백 (콘텐츠와 테두리 사이 공간을 의미함)
+      1. padding: 5px;
+        ┌─────┐
+        |  5  |
+        |5   5|
+        |  5  |
+        └─────┘
+      2. padding: 5px 6px;
+        ┌─────┐
+        |  5  |
+        |6   6|
+        |  5  |
+        └─────┘
+      3. padding: 5px 6px 7px;
+        ┌─────┐
+        |  5  |
+        |6   6|
+        |  7  |
+        └─────┘
+      4. padding: 5px 6px 7px 8px;
+        ┌─────┐
+        |  5  |
+        |8   6|
+        |  7  |
+        └─────┘
+   -->
+   <style>
+    #box1 > img {
+      width: 100px;
+    }
+    #box1 {
+      border: 1px solid green;
+      width: 200px;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+   </style>
+   <div id="box1">
+    <img src="../assets/images/animal10.jpg">
+   </div>
+
+   <hr>
+
+  <!-- padding 단축 속성 -->
+   <style>
+    #box2 {
+      border: 1px solid green;
+      width: 200px;
+      padding: 20px 10px 5px 1px;
+    }
+   </style>
+   <div id="box2">
+   <img src="../assets/images/animal10.jpg" width="100px">
+   </div>
+   
+</body>
+</html>

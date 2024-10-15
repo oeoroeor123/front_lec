@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>border</title>
+</head>
+<body>
+
+  <!-- 
+    border-widht : 테두리 두께
+    border-style : 테두리 종류 (dashed, dotted, doible, ...)
+    border-color : 테두리 색상
+   -->
+   <style>
+    #box1 {
+      border-width: 1px;
+      border-style: solid;
+      border-color: red;
+    }
+   </style>
+  <div id="box1">box1</div>
+
+  <hr>
+
+  <!--
+    border 단축 속성
+    1. border 속성
+    2. 두께, 종류, 색상 한 번에 지정
+   -->
+   <style>
+    #box2 {
+      border: 1px solid red;
+    }
+   </style>
+   <div id="box2">box2</div>
+
+   <hr>
+
+   <!--
+    박스 선 개별 지정 속성
+    border-top
+    border-bottom
+    border-left
+    border-right
+    -->
+    <style>
+      #box3 {
+        border-top: 1px solid red;
+        border-bottom: 1px solid red;
+      }
+    </style>
+    <div id="box3">box3</div>
+
+    <hr>
+
+    <!-- 
+      border-radius
+      *  테두리 모서리 둥글게 다듬기
+      1. border-radius: 5px;
+        ┌─────┐
+        |5   5|
+        |     |
+        |5   5|
+        └─────┘
+      2. border-radius: 5px 6px;
+        ┌─────┐
+        |5   6|
+        |     |
+        |6   5|
+        └─────┘
+      3. border-radius: 5px 6px 7px;
+        ┌─────┐
+        |5   6|
+        |     |
+        |6   7|
+        └─────┘
+      4. border-radius: 5px 6px 7px 8px;
+        ┌─────┐
+        |5   6|
+        |     |
+        |8   7|
+        └─────┘
+     -->
+     <style>
+      #box4 {
+        border: 1px solid green;
+        border-radius: 5px 10px 15px 20px;
+      }
+     </style>
+     <div id="box4">box4</div>
+</body>
+</html>

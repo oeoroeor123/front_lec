@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>background</title>
+</head>
+<body>
+  
+  <!-- background-color -->
+  <style>
+    #box1 {
+      width: 100px;
+      height: 20px;
+      background-color: green;
+    }
+  </style>
+  <div id="box1"></div>
+
+  <hr>
+
+  <!--
+    background-image : 이미지 삽입 url(주소)
+    background-size : box 크기가 아닌 배경 사이즈 지정
+    background-repeat : 이미지 반복 유무 repeat/no-repeat
+    background-position : 이미지 위치 지정
+  -->
+  <style>
+    #box2 {
+      box-sizing: border-box;
+      width: 300px;
+      height: 300px;
+      border: 1px solid green;
+      background-image: url('../assets/images/animal10.jpg');
+      background-size: 300px 300px; /* div 크기와 동일하게 설정 == 100% 100% */
+      background-size: 50px 50px;
+      background-repeat: no-repeat;
+      background-position: center; /* top,bottom,left,right 지정 시 중간정렬은 자동으로 되고 위치만 변동됨 / center 정가운데 위치 */
+    }
+  </style>
+  <div id="box2"></div>
+
+  <hr>
+  <!-- 
+    box의 원본 규격을 살려서 이미지를 넣는 방식
+    1.background-size: contain;
+      원본 이미지 크기 (너비,높이) 중 '큰 부분 길이를 맞춰서' 사이즈를 채워줌
+    2. background-size: cover;
+      원본 이미지 크기 중 '작은 부분 길이를 맞춰서' 사이즈를 채워줌
+   -->
+  <style>
+    #box3 {
+      box-sizing: border-box;
+      width: 300px;
+      height: 300px;
+      border: 1px solid green;
+      background-image: url(../assets/images/animal10.jpg);
+      background-size: contain; /* 이미지를 박스 내부에 잘리지 않고 온전히 표시, 일반적으로 박스 내부에 여백이 생김 (못채우는 부분) */
+      background-size: cover; /* 원본 이미지 크기 중 작은 부분을 최대한 키움, 박스 밖으로 나간 부분은 표시되지 않음, 일반적으로 이미지가 잘림 */
+      background-repeat: no-repeat;
+    }
+  </style>
+  <div id="box3"></div>
+</body>
+</html>
