@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overflow</title>
+</head>
+<body>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 1px solid gray;
+    }
+    #box1 {
+      overflow: hidden;
+    }
+    #box2 {
+      overflow: scroll;
+    }
+    #box3 {
+      overflow: auto;
+    }
+    #box4 {
+      overflow: visible;
+    }
+  </style>
+  <!-- overflow: hidden; (숨김) -->
+  <div id="box1">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla maximus quam. Integer iaculis, urna semper accumsan tincidunt, ante leo condimentum sem, ac vulputate nisi nibh vel mauris. Aenean et neque ut est pellentesque aliquam. Donec sodales molestie massa id viverra. Nunc ac vulputate risus. Nulla tortor nunc, tincidunt ac ex ac, fermentum rhoncus nisl. Donec eget odio maximus, efficitur lacus ut, porttitor sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi malesuada eget felis vel tempus. Aenean vel turpis sit amet lorem sagittis condimentum sed et enim. Nunc cursus nunc nibh, id ultricies ligula commodo et. Donec posuere diam sed sapien sodales, ut tempus urna lobortis. Fusce dolor enim, varius sit amet diam vel, gravida lacinia purus.
+  </div>
+  <hr>
+
+  <!-- overflow: scroll; (스크롤) -->
+  <div id="box2">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla maximus quam. Integer iaculis, urna semper accumsan tincidunt, ante leo condimentum sem, ac vulputate nisi nibh vel mauris. Aenean et neque ut est pellentesque aliquam. Donec sodales molestie massa id viverra. Nunc ac vulputate risus. Nulla tortor nunc, tincidunt ac ex ac, fermentum rhoncus nisl. Donec eget odio maximus, efficitur lacus ut, porttitor sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi malesuada eget felis vel tempus. Aenean vel turpis sit amet lorem sagittis condimentum sed et enim. Nunc cursus nunc nibh, id ultricies ligula commodo et. Donec posuere diam sed sapien sodales, ut tempus urna lobortis. Fusce dolor enim, varius sit amet diam vel, gravida lacinia purus.
+  </div>
+  <hr>
+
+  <!-- overflow: auto; (자동) -->
+  <div id="box3">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla maximus quam. Integer iaculis, urna semper accumsan tincidunt, ante leo condimentum sem, ac vulputate nisi nibh vel mauris. Aenean et neque ut est pellentesque aliquam. Donec sodales molestie massa id viverra. Nunc ac vulputate risus. Nulla tortor nunc, tincidunt ac ex ac, fermentum rhoncus nisl. Donec eget odio maximus, efficitur lacus ut, porttitor sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi malesuada eget felis vel tempus. Aenean vel turpis sit amet lorem sagittis condimentum sed et enim. Nunc cursus nunc nibh, id ultricies ligula commodo et. Donec posuere diam sed sapien sodales, ut tempus urna lobortis. Fusce dolor enim, varius sit amet diam vel, gravida lacinia purus.
+  </div>
+  <hr>
+
+    <!-- overflow: visible; (디폴트) 자르지 않고 박스 내용을 다 보여줌 -->
+    <div id="box4">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla maximus quam. Integer iaculis, urna semper accumsan tincidunt, ante leo condimentum sem, ac vulputate nisi nibh vel mauris. Aenean et neque ut est pellentesque aliquam. Donec sodales molestie massa id viverra. Nunc ac vulputate risus. Nulla tortor nunc, tincidunt ac ex ac, fermentum rhoncus nisl. Donec eget odio maximus, efficitur lacus ut, porttitor sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi malesuada eget felis vel tempus. Aenean vel turpis sit amet lorem sagittis condimentum sed et enim. Nunc cursus nunc nibh, id ultricies ligula commodo et. Donec posuere diam sed sapien sodales, ut tempus urna lobortis. Fusce dolor enim, varius sit amet diam vel, gravida lacinia purus.
+    </div>
+    <hr>
+
+    <style>
+       /*
+      overflow: hidden;
+      ┌──────────────────────────┐ 
+      |  float: left;            |
+      |  ┌────────┐  ┌────────┐  |
+      |  |        |  |        |  |
+      |  └────────┘  └────────┘  |
+      └──────────────────────────┘
+       */
+      .gnb {
+        margin-top: 300px;
+        list-style: none;
+        padding: 0;
+        overflow: hidden;
+      }
+      .gnb > li {
+       float: left;
+       padding: 10px;
+       border: 1px solid gray;
+       text-align: center;
+      }
+    </style>
+    <ul class="gnb">
+      <li>정치</li>
+      <li>경제</li>
+      <li>사회</li>
+      <li>생활/문화</li>
+      <li>IT/과학</li>
+    </ul>
+    <div class="content">content</div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+</head>
+<body>
+  
+  <style>
+    .table1 {
+      border: 3px solid purple;
+      border-collapse: collapse; /*각 테이블 테두리 구분 여부 지정 > separate : 각 영역 테두리 구분 (디폴트), collapse : 각 영역 테두리를 합침 (테두리 붕괴) */
+    }
+    .table1 > thead th {
+      border: 1px solid gray;
+    }
+    .table1 > thead th:nth-of-type(1) { width: 200px; }
+    .table1 > thead th:nth-of-type(2) { width: 300px; }
+    .table1 > thead th:nth-of-type(3) { width: 400px; }
+    .table1 > tbody td {
+      border: 1px solid gray;
+      height: 50px;
+      text-align: center; /* 가로 방향 정렬 */
+      vertical-align: top; /* 세로 방향 정렬 */
+    }
+    .table1 > tfoot td {
+      border: 1px solid gray;
+      text-align: center;
+    }
+    .table1 > tbody > tr:hover {
+      background-color: beige;
+      cursor: pointer;;
+    }
+    .table1 > tbody > tr:active {
+      background-color:  tan;
+    }
+  </style>
+  <table class="table1">
+    <thead>
+      <tr>
+        <th>회원번호</th>
+        <th>회원명</th>
+        <th>포인트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>jessica</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>jin</td>
+        <td>200</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>jungkook</td>
+        <td>300</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">포인트합계</td>
+        <td>600</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <hr>
+
+  <style>
+    .table2 {
+      border: 3px solid green;
+      border-collapse: collapse;
+    }
+    .table2 > thead th {
+      border: 1px solid gray;
+    }
+    .table2 > thead th:nth-of-type(1) { width: 80px;}
+    .table2 > thead th:nth-of-type(2) { width: 100px;}
+    .table2 > thead th:nth-of-type(3) { width: 70px;}
+    .table2 td {
+      border: 1px solid gray;
+      height: 40px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+  </style>
+  <table class="table2">
+    <thead>
+      <tr>
+        <th>회원번호</th>
+        <th>회원명</th>
+        <th>포인트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>1</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>2</td>
+        <td>200</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>2</td>
+        <td>300</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">포인트 합계</td>
+        <td>600</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <style>
+    #title {
+      font-weight: 200px;
+      text-align: center;
+    }
+    #ten {
+      color:blue;
+      font-size: 30px;
+    }
+    #date {
+      border: 1px solid red;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    #date > thead th {
+      border: 1px solid gray;
+      text-align: center;
+      width: 70px;
+    }
+    .sun {
+      color:red;
+    }
+    .sat {
+      color:blue;
+    }
+    .off {
+      color:gray;
+    }
+    #date > tbody td {
+      border: 1px solid gray;
+      height: 70px;
+      width: 50px;
+      vertical-align: top;
+      text-align: left;
+    }
+    #date > tbody td:hover {
+      background-color: pink;
+      cursor: pointer;
+    }
+  </style>
+
+    <div id="title">2024
+    <span id="ten"><strong>10</strong></span>
+    February</div>
+    <table id="date">
+    <thead>
+      <tr>
+        <th class="sun">SUN</th>
+        <th>MON</th>
+        <th>TUE</th>
+        <th>WED</th>
+        <th>THU</th>
+        <th>FRI</th>
+        <th class="sat">SAT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td class="off">29</td>
+      <td class="off">30</td>
+      <td class="sun">1</td>
+      <td>2</td>
+      <td class="sun">3</td>
+      <td>4</td>
+      <td class="sat">5</td>
+      </tr>
+      <tr>
+        <td class="sun">6</td>
+        <td>7</td>
+        <td>8</td>
+        <td class="sun">9</td>
+        <td>10</td>
+        <td class="sun">11</td>
+        <td class="sat">12</td>
+        </tr>
+        <tr>
+          <td class="sun">13</td>
+          <td>14</td>
+          <td>15</td>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+          <td class="sat">19</td>
+          </tr>
+          <tr>
+            <td class="sun">20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td class="sat">26</td>
+            </tr>
+            <tr>
+              <td class="sun">27</td>
+              <td>28</td>
+              <td>29</td>
+              <td>30</td>
+              <td>31</td>
+              <td class="off">1</td>
+              <td class="off">2</td>
+              </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

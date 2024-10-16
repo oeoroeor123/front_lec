@@ -61,5 +61,24 @@
     }
   </style>
   <div id="box3"></div>
+
+  <hr>
+
+  <!--
+    background position을 이용한 이미지 일부 노출 방법
+    1. 박스를 움직이는게 아닌 배경 (백그라운드)를 움직이는 것
+    2. 가로, 세로 방향으로 움직이는 값 px로 부여 (왼쪽 - / 오른쪽 + / 위쪽 - / 아래쪽 +)
+  -->
+  <style>
+    #box4 {
+      box-sizing: border-box;
+      width: 150px;
+      height: 100px;
+      border: 1px solid green;
+      background-image: url('../assets/images/logo.png');
+      background-position: -300px -200px; /* x방향 왼쪽으로 300px만큼 배경 이동, y 방향 위쪽으로 200px만큼 배경 이동한 값 */ 
+    }
+  </style>
+  <div id="box4"></div>
 </body>
 </html>

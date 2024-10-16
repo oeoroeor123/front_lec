@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display</title>
+</head>
+<body>
+  
+  <!-- display: block; -->
+  <style>
+    span, a {
+      display: block;
+      width: 300px;
+      height: 50px;
+      text-align: center;
+    }
+  </style>
+  <span>인라인 요소1</span>
+  <a>인라인 요소2</a>
+
+  <hr>
+
+  <!-- display: inline; -->
+  <style>
+    h1, p {
+      display: inline;
+    }
+  </style>
+  <h1>블록 요소1</h1>
+  <p>블록 요소2</p>
+
+  <hr>
+
+  <!-- 
+    display: inline-block;
+    1. block 성질 : width / height / text=align 가능
+    2. inline 성질 : 같은 라인에 배치 가능 
+  -->
+  <style>
+    pre {
+      display: inline-block;
+      width: 300px;
+      height: 50px;
+      text-align: center;
+      border: 1px solid green;
+    }
+  </style>
+  <pre>블록 요소1</pre>
+  <pre>블록 요소2</pre>
+  <pre>블록 요소3</pre>
+
+  <hr>
+
+  <style>
+  .inp-wrap > label {
+    display: inline-block;
+    width: 80px;
+  }
+  </style>
+  <div class="inp-wrap">
+    <label for="id">아이디</label>
+    <input type="text" id="id">
+  </div>
+  <div class="inp-wrap">
+    <label for="pw">비밀번호</label>
+    <input type="password" id="pw">
+  </div>
+  
+  <style>
+    .inp-wrap2 > label {
+      display: inline-block;
+      width: 100px;
+    }
+  </style>
+  <div class="inp-wrap2">
+    <label for="id2">아이디2</label>
+    <input type="text" id="id2">
+  </div>
+  <div class="inp-wrap2">
+    <label for="pw2">비밀번호2</label>
+    <input type="password2" id="pw2">
+  </div>
+
+  <hr>
+
+<style>
+  .gnb {
+    list-style-type: none;
+    padding: 0;
+  }
+  .gnb > li {
+    display:inline-block;
+    border: 1px solid gray;
+    width: 80px;
+    height: 25px;
+    margin: 0;
+    text-align: center;
+  }
+  .gnb > li:hover {
+    cursor: pointer;
+  }
+</style>
+<ul class="gnb">
+  <li>정치</li>
+  <li>경제</li>
+  <li>사회</li>
+  <li>생활/문화</li>
+  <li>IT/과학</li>
+</ul>
+
+<style>
+  .gnb2 {
+    list-style-type: none;
+    padding: 0;
+  }
+  .gnb2 > li {
+    display: inline-block;
+    border: 1px solid gold;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    margin: 0;
+  }
+</style>
+<ul class="gnb2">
+  <li>데님</li>
+  <li>스웨이드</li>
+  <li>레더</li>
+  <li>폴리</li>
+  <li>에코퍼</li>
+</ul>
+
+</body>
+</html>
