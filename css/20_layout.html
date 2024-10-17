@@ -9,14 +9,7 @@
   
   <!-- css 초기 설정 -->
   <style>
-    div,h1,p,body,pre,ul,ol,dl,li,dt,dd {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    ul,ol {
-      list-style-type: none;
-    }
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
     a {
       text-decoration: none;
     }
@@ -32,6 +25,35 @@
       background-color: white;
       position: fixed;
       top: 0;
+    }
+    .title {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .sign {
+      text-align: right;
+      width: 95%;
+    }
+    .gnb-wrap {
+      width: 400px;
+      margin: 50px auto 0;
+    }
+    .gnb {
+      width: 100%;
+      overflow: hidden;
+    }
+    .gnb > li {
+      float: left;
+      width: 80px;
+    }
+    .gnb > li > a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .gnb > li > a:hover {
+      color: purple;
     }
     .container {
       width: 70%;
@@ -62,7 +84,33 @@
     }
 
   </style>
-  <div class="header"></div>
+  <!--
+  *semantic tag : 각 구역 별 div 의미를 가진 태그들 = div에 class 넣어 사용한 것과 동일함
+  <header>
+    <nav></nav>
+  </header>
+  <main>
+      <section></section>
+      <article></article>
+      <aside></aside>
+  </main>
+    -->
+  <div class="header">
+    <h1 class="title">homepage</h1>
+    <div class="sign">
+      <a href="/login">로그인</a>
+      <a href="/join">회원가입</a>
+    </div>
+    <div class="gnb-wrap">
+      <ul class="gnb">
+        <li><a href="/menu1">메뉴1</a></li>
+        <li><a href="/menu2">메뉴2</a></li>
+        <li><a href="/menu3">메뉴3</a></li>
+        <li><a href="/menu4">메뉴4</a></li>
+        <li><a href="/menu5">메뉴5</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="container">
     <!-- main과 aside를 overflow:hidden할 수 있게 바디 영역 div를 만들어줌 -->
     <div class="main"></div>

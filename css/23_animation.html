@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animation</title>
+</head>
+<body>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid green;
+      box-sizing: border-box;
+    }
+  </style>
+  <style>
+    /* 애니메이션 내용과 이름 등록 : keyframes 이름은 자유 지정 */
+    @-webkit-keyframes circle {
+      /* from : 애니메이션의 시작 지점 */
+      from {
+        background-color: red;
+        opacity: 0;
+      }
+      /* to : 애니메이션의 종료 지점 */
+      to {
+        background-color: rgb(194, 223, 69);
+        opacity: 1;
+      }
+    }
+    .box1 {
+      border-radius: 50px;
+      animation-name: circle; /* keyframes에서 등록한 애니메이션 이름 */
+      animation-duration: 2s; /* 애니메이션 시간 2초 */
+      animation-iteration-count: infinite; /* 애니메이션 반복 횟수 */
+      animation-direction: alternate; /* 애니메이션 방향 */
+    }
+  </style>
+  <div class="box1"></div>
+
+  <hr>
+
+  <style>
+    @keyframes neon {
+      0% {background-color: aqua;}
+      12.5% {background-color: purple;}
+      25% {background-color: red;}
+      37.5% {background-color: yellow;}
+      50% {background-color: teal;}
+      62.5% {background-color: blue;}
+      75% {background-color: pink;}
+      87.5% {background-color: orange;}
+      100% {background-color: navy;}
+    }
+    .box2 {
+      border-radius: 50px;
+      animation: neon 2s ease 0s infinite alternate;
+    }
+  </style>
+  <div class="box2"></div>
+
+  <hr>
+
+  <style>
+    @keyframes moving {
+      from {
+        margin: 0;
+      }
+      to {
+        margin: 0 900px;
+      }
+    }
+    .box3 {
+      animation: moving 2s ease 0s infinite alternate;
+    }
+  </style>
+  <div class="box3"></div>
+</body>
+</html>

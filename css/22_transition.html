@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transition</title>
+</head>
+<body>
+  
+  <!-- 
+    transition
+    1. css 속성이 적용되는 과정(이행 과정)을 확인할 수 있는 속성
+    2. 관련 속성
+      1) transition-property : 디폴트 all, 이행할 css 속성
+      2) transition-dulation : 디폴트 0s, 이행 시간 (단위:초)
+      3) transition-timing-function : 디폴트 ease, 이행 속도
+      4) transition-delay : 디폴트 0s, 딜레이 시간 (단위:초)
+      5) transition : 1번 ~ 4번 속성을 한 번에 작성하는 단축 속성 
+   -->
+   <style>
+    .box1 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid green;
+      transition-property: all;
+      transition-duration: 1s; /* 1초 동안 이행 */
+      transition-timing-function: ease;
+      transition-delay: 1s; /* 1초 후에 이행 시작 */
+    }
+    .box1:hover {
+      width: 300px;
+      background-color: tomato;
+    }
+   </style>
+   <div class="box1"></div>
+
+   <hr>
+
+   <style>
+    .box2 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid purple;
+      border-radius: 50px;
+      text-align: center;
+      line-height: 100px;
+      transition: all 5s ease 0.5s; /* transition 단축 속성 */
+    }
+    .box2:active {
+      transform: rotate(36000deg); /* 36000도 회전 (단위 : 도 = deg) */
+      transform: rotate(100turn); /* 100 바퀴 회전 */
+      transform: translateX(200px); /* 오른쪽(x)으로 200px 이동 */
+      transform: scale(2, 1); /* 가로 2배, 세로 1배 커짐 */
+    }
+   </style>
+   <div class="box2">회전판</div>
+
+   <hr>
+   <style>
+    .image {
+      background-image: url(../assets/images/animal10.jpg);
+      width: 192px;
+      height: 128px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .screen {
+      background-color: red;
+      width: 192px;
+      height: 128px;
+      transition: all 2s ease 0.5s;
+    }
+    .screen:active {
+      transform: translateY(-100%);
+    }
+   </style>
+   <div class="image-wrap">
+    <div class="image"></div>
+    <div class="screen"></div>
+   </div>
+</body>
+</html>

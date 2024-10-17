@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex</title>
+</head>
+<body>
+  
+  <!-- 
+    display : flex;
+    1. 부모에 display: flex;를 설정하면 자식들이 flexable한 box가 됨
+    2. 기본 용어
+      1) 부모 : flex container
+      2) 자식 : flex item
+    3. 축
+      1) 메인 축 : main axis (x축_가로 방향)
+      2) 보조 축 : cross axis (y축_세로 방향) 
+   -->
+   <style>
+    div {
+      box-sizing: border-box;
+      border: 1px solid green;
+    }
+   </style>
+
+   <style>
+    .wrap1 {
+      width: 300px;
+      display: flex;
+      flex-direction: row;
+    }
+    .wrap1 > .box {
+      width: 50px;
+    }
+   </style>
+   <h4>display:flex;</h4>
+   <div class="wrap1">
+   <div class="box">box1</div>    
+   <div class="box">box2</div>    
+   <div class="box">box3</div>    
+   </div>
+
+   <hr>
+
+   <!-- flex 방향 정렬 방법 -->
+   <!-- display:flex 줄 때 flex-direction까지 함께 방향 정렬 한번에 지정_한 세트 > ex) <style> .wrap2 { display:flex; 밑에 flex-direction: row;} </style> -->
+   <style>
+    .wrap2 {
+      width: 200px;
+      height: 200px;
+      display: flex;
+    }
+    .wrap2 > .box {
+      width: 50px;
+      height: 50px;
+    }
+    #row {
+      flex-direction: row; /* 디폴트 */
+    }
+    #row-reverse {
+      flex-direction: row-reverse;
+    }
+    #column {
+      flex-direction: column;
+    }
+    #column-reverse {
+      flex-direction: column-reverse;
+    }
+   </style>
+   <h4>flex-direction: row;</h4>
+   <div class="wrap2" id="row">
+   <div class="box">box1</div>    
+   <div class="box">box2</div>    
+   <div class="box">box3</div>    
+   </div>
+
+   <h4>flex-direction: row-reverse;</h4>
+   <div class="wrap2" id="row-reverse">
+   <div class="box">box1</div>    
+   <div class="box">box2</div>    
+   <div class="box">box3</div>
+   </div>
+
+   <h4>flex-direction: column;</h4>
+   <div class="wrap2" id="column">
+   <div class="box">box1</div>    
+   <div class="box">box2</div>    
+   <div class="box">box3</div>    
+   </div>
+
+   <h4>flex-direction: column-reverse;</h4>
+   <div class="wrap2" id="column-reverse">
+   <div class="box">box1</div>
+   <div class="box">box2</div>
+   <div class="box">box3</div>    
+   </div>
+
+   <hr>
+
+   <style>
+    .wrap3 {
+      width: 200px;
+      height: 200px;
+      display: flex;
+    }
+    .wrap3 > .box {
+      width: 50px;
+      height: 50px;
+    }
+    #nowrap {
+      /*
+      디폴트값
+      flex-item이 flex-container의 영역을 벗어나더라도 sigel-line으로 나타남 (밖으로 나가도 한줄로 나타남)
+      flex-item의 크기가 변할 수 있음
+      */
+      flex-wrap: nowrap; 
+    }
+    #wrap {
+      /* 
+      flex-iem이 flex-container의 영역을 벗어나지 않도록 multi-line으로 나타남 (밖으로 나갈 것 같으면 줄 바꿔서 나타남)
+      flex-item의 크기가 유지됨
+      */
+      flex-wrap: wrap;
+    }
+   </style>
+   <h4>flex-wrap: nowrap;</h4>
+   <div class="wrap3" id="nowrap">
+   <div class="box">box1</div>
+   <div class="box">box2</div>
+   <div class="box">box3</div>
+   <div class="box">box4</div>
+   <div class="box">box5</div>
+   <div class="box">box6</div>   
+   </div>
+
+   <h4>flex-wrap: wrap;</h4>
+   <div class="wrap3" id="wrap">
+   <div class="box">box1</div>
+   <div class="box">box2</div>
+   <div class="box">box3</div>
+   <div class="box">box4</div>
+   <div class="box">box5</div>
+   <div class="box">box6</div>   
+   </div>
+
+   <hr>
+
+   <!--
+    flex-direction;
+    flex-wrap;
+    ---2가지를 합친 단축 속성
+    flex-flow: row nowrap;
+  -->
+
+  <style>
+  /* ★ justify-content */
+    .wrap4 {
+      width: 400px;
+      display: flex;
+    }
+    .wrap4 > .box {
+      width: 100px;
+    }
+    #flex-start {justify-content:flex-start;}
+    #flex-end {justify-content:flex-end;}
+    #center {justify-content: center;}
+    #space-between {justify-content: space-between;}
+    #space-around {justify-content: space-around;}
+    
+  </style>
+  <h4>justify-content: flex-start;</h4>
+  <div class="wrap4" id="flex-start">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>justify-content: flex-end;</h4>
+  <div class="wrap4" id="flex-end">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>justify-content: center;</h4>
+  <div class="wrap4" id="center">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>justify-content: space-between;</h4>
+  <div class="wrap4" id="space-between">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>justify-content: space-around;</h4>
+  <div class="wrap4" id="space-around">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <hr>
+  
+  <style>
+  /* align-items */
+    .wrap5 {
+      width: 150px;
+      height: 300px;
+      display: flex;
+    }
+    .wrap5 > .box {
+      width: 100px;
+    }
+    .wrap5#flex-start { align-items: flex-start; }
+    .wrap5#flex-end { align-items: flex-end; }
+    .wrap5#center { align-items: center; }
+    #stretch {align-items: stretch;}
+  </style>
+  <h4>align-items: flex-start;</h4>
+  <div class="wrap5" id="flex-start">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>align-items: flex-end;</h4>
+  <div class="wrap5" id="flex-end">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>align-items: center;</h4>
+  <div class="wrap5" id="center">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <h4>align-items: stretch;</h4>
+  <div class="wrap5" id="stretch">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+
+  <hr>
+
+  <style>
+    .wrap6 {
+      width: 500px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    .wrap6 > .box:nth-of-type(1) { flex:2; }  /* width: 20% */
+    .wrap6 > .box:nth-of-type(2) { flex:5; }  /* width: 50% */
+    .wrap6 > .box:nth-of-type(3) { flex:3; }  /* width: 30% */
+  </style>
+  <h4>flex: n;</h4>
+  <div class="wrap6">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+  </div>
+  
+  <hr>
+
+  <!-- 연습문제 -->
+  <style>
+    ul, li, a {
+      box-sizing: border-box;
+    }
+    ul, li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .gnb-wrap {
+      width: 1000px;
+      margin: 0 auto;
+      border: none;
+    }
+    .gnb {
+      width: 100%;
+      border-top: 1px solid gray;
+      border-bottom: 3px solid gray;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+    .gnb > li {
+      width: 100px;
+    }
+    .gnb > li > a {
+      display: block;
+      width: 100%;
+      height: 50px;
+      color: gray;
+      text-align: center;  /* 가로 가운데 정렬 */
+      line-height: 50px;   /* height 과 값이 같으면 세로 가운데 정렬 효과를 냄 */
+      text-decoration: none;
+    }
+    .gnb > li > a:hover {
+      color: orangered;
+      border-bottom: 3px solid orangered;
+    }
+  </style>
+  <div class="gnb-wrap">
+    <ul class="gnb">
+      <li><a href="#">메뉴1</a></li>
+      <li><a href="#">메뉴2</a></li>
+      <li><a href="#">메뉴3</a></li>
+      <li><a href="#">메뉴4</a></li>
+      <li><a href="#">메뉴5</a></li>
+    </ul>
+  </div>
+</body>
+</html>

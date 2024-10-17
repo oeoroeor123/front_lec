@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>visible</title>
+</head>
+<body>
+  
+  <!-- 
+    화면에서 요소를 숨기는 방법
+    1. 요소 자체가 사라지는 방법
+      1) width와 height를 0으로 지정
+      2) position: absolute; 지정 후 위치 지정 (ex_top: -9999px;)
+      3) display: none; 지정
+    2. 요소가 존재하지만 보이지 않는 방법 (요소의 영역은 남아있음)
+      1) visibility : hidden; 지정
+      2) opacity(투명값) : 0; (0:투명, 1:불투명)
+   -->
+
+  <style>
+    .wrap {
+      display: flex;
+    }
+    .wrap > .flower:nth-of-type(1) {
+      background-image: url('../assets/images/flower1.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 192px;
+      height: 128px;
+      
+    }
+    .wrap > .flower:nth-of-type(2) {
+      background-image: url('../assets/images/flower2.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 192px;
+      height: 128px;
+    }
+    .wrap > .flower:nth-of-type(3) {
+      background-image: url('../assets/images/flower3.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 192px;
+      height: 128px;
+    }
+    .flower:nth-of-type(2) {
+      /* 요소 숨기기 연습용 */
+      opacity: 0;
+    }
+  </style>
+  <div class="wrap">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+
+  <hr>
+
+  <style>
+    .sentence-wrap {
+      position: relative;
+    }
+    .keyword {
+      position: absolute;
+      top:-9999px;
+    }
+    .sentence:hover +.keyword {
+      position: absolute;
+      top: 20px;
+      left: 50px;
+      padding: 0 5px;
+      border: 1px solid tomato;
+      border-radius: 3px;
+      background-color: beige;
+      font-size: 0.8em;
+    }
+  </style>
+  <div class="sentence-wrap">
+    <div  class="sentence">우리는 css를 배우고 있어요.</div>
+    <div class="keyword">Cascade Style Sheet</div>
+  </div>
+
+</body>
+</html>
