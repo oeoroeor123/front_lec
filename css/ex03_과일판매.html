@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>과일판매</title>
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+    .wrap {
+      width: 920px;
+      margin: 50px auto;
+    }
+    ul {
+      display: flex;
+      justify-content: space-between;
+    }
+    li > div {
+      width: 300px;
+      height: 200px;
+    }
+    .image {
+      background-size: 100% 100%;
+    }
+    #image1 {
+      background-image: url('../assets/images/fruit1.jpg');
+    }
+    #image2 {
+      background-image: url('../assets/images/fruit2.jpg');
+    }
+    #image3 {
+      background-image: url('../assets/images/fruit3.jpg');
+    }
+    .describe {
+      padding-top: 50px;
+      background-color: rgba(171, 171, 171, 0.5);
+      text-align: center;
+      color: #ffffff;
+      opacity: 0; /* 커서 대기 전에 영역이 안보이도록 투명도 0으로 설정 */
+      transition-property: opacity, transform; /* css 속성 중 변화 줄 속성만 적기 */
+      transition-duration: 1s;
+    }
+    .describe > h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .image:hover + .describe {
+      opacity: 1;
+      transform: translateY(-100%); /* 또는 이미지 높이인 -200px로 움직임 값 지정 */
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <ul>
+      <li>
+        <div class="image" id="image1"></div>
+        <div class="describe">
+          <h1>과일1</h1>
+          <p>맛있는 과일</p>
+          <p>가격 : 10,000원</p>
+        </div>
+      </li>
+      <li>
+        <div class="image" id="image2"></div>
+        <div class="describe">
+          <h1>과일2</h1>
+          <p>싱싱한 과일</p>
+          <p>가격 : 20,000원</p>
+        </div>
+      </li>
+      <li>
+        <div class="image" id="image3"></div>
+        <div class="describe">
+          <h1>과일3</h1>
+          <p>달콤한 과일</p>
+          <p>가격 : 30,000원</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

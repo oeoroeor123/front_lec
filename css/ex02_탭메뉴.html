@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탭메뉴</title>
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+    .wrap {
+      width: 300px;
+      margin: 20px auto;
+    }
+    #first-tab-chk, #second-tab-chk {
+      display: none;
+    }
+    .tab-menu {
+      display: flex;
+    }
+     .tab-menu > label {
+      display: block;
+      width: 150px;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #303030;
+      text-align: center;
+      border: 1px solid #ababab;
+      cursor: pointer;
+     }
+    .tab-menu > label:first-of-type {
+      border-right: none;
+    }
+    #first-tab-chk:checked ~ .tab-menu > label:first-of-type {
+      background-color: #cdcdcd;
+    }
+    #second-tab-chk:checked ~ .tab-menu > label:last-of-type {
+      background-color: #cdcdcd;
+    }
+    .tab-content {
+      display: none;
+      width: 300px;
+      padding: 20px 0 0 15px;
+      border: 1px solid #ababab;
+      border-top: none;
+    }
+    #first-tab-chk:checked ~ div:nth-of-type(2) {
+      display: block;
+    }
+    #second-tab-chk:checked ~ div:nth-of-type(3) {
+      display: block;
+    }
+    .content {
+      width: 285px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 50px;
+    }
+    .thumbnail {
+      width: 100px;
+      height: 60px;
+      background-size: cover;
+    }
+    .animal {
+      background-image: url('../assets/images/animal1.jpg');
+    }
+    .building {
+      background-image: url('../assets/images/architecture2.jpg');
+    }
+    .description {
+      width: 180px;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="wrap">
+
+    <!-- 상단 탭 -->
+    <input type="radio" name="tab" id="first-tab-chk" class="screen-out" checked>
+    <input type="radio" name="tab" id="second-tab-chk" class="screen-out">
+    <div class="tab-menu">
+      <label for="first-tab-chk">동물</label>
+      <label for="second-tab-chk">건축물</label>
+    </div>
+    
+    <!-- 1번째 탭 (동물) -->
+    <div class="tab-content">
+      <ul>
+        <li class="content">
+          <div class="thumbnail animal"></div>
+          <div class="description">
+            <h4>동물1</h4>
+            <p>내용1</p>
+          </div>
+        </li>
+        <li class="content">
+          <div class="thumbnail animal"></div>
+          <div class="description">
+            <h4>동물2</h4>
+            <p>내용2</p>
+          </div>
+        </li>
+        <li class="content">
+          <div class="thumbnail animal"></div>
+          <div class="description">
+            <h4>동물3</h4>
+            <p>내용3</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 2번째 탭 (건축물) -->
+    <div class="tab-content">
+      <ul>
+        <li class="content">
+          <div class="thumbnail building"></div>
+          <div class="description">
+            <h4>건축물1</h4>
+            <p>내용1</p>
+          </div>
+        </li>
+        <li class="content">
+          <div class="thumbnail building"></div>
+          <div class="description">
+            <h4>건축물2</h4>
+            <p>내용2</p>
+          </div>
+        </li>
+        <li class="content">
+          <div class="thumbnail building"></div>
+          <div class="description">
+            <h4>건축물3</h4>
+            <p>내용3</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

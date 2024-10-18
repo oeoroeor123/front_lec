@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>semantic</title>
+</head>
+<body>
+   
+  <!--
+    semantic 태그
+    1. 의미를 가지고 있는 구역 태그를 의미한다.
+    2. 종류
+      1) <header>
+      2) <nav>
+      3) <main>
+      4) <section>
+      5) <article>
+      6) <aside>
+      7) <footer>
+  -->
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+  * {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color : #303030;
+}
+a {
+  text-decoration: none;
+}
+body {
+  padding: 0 250px;
+}
+.wrap {
+  min-width: 400px;
+}
+header {
+  padding: 50px 0;
+}
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+}
+.gnb {
+  background-color: #101010;
+  display: flex;
+}
+.gnb > li > a {
+  display: block;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color : #efefef;
+}
+.gnb > li > a:hover {
+  background-color: #00aa00;
+}
+.main-section {
+  display: flex;
+  border: 1px solid #ababab;
+}
+.left-section, .right-section {
+  padding: 5px;
+}
+.left-section {
+  border-right: 1px solid #ababab;
+  flex: 3; /* width : 75% */
+  margin-right: 10px;
+}
+.right-section {
+  border-left: 1px solid #ababab;
+  flex: 1; /* width : 25% */
+}
+article {
+  border: 1px solid #ababab;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.sub-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.img {
+  height: 50px;
+  background-color: #888888;
+}
+footer {
+  height: 150px;
+  background-color: #f0f0f0;
+  margin-top: 5px;
+}
+footer > p {
+  text-align: center;
+  line-height: 150px;
+}
+  </style>
+ <div class="wrap">
+  <header>
+    <h1 class="title">Website</h1>
+  </header>
+  <nav>
+    <ul class="gnb">
+      <li><a href="#">메뉴1</a></li>
+      <li><a href="#">메뉴2</a></li>
+      <li><a href="#">메뉴3</a></li>
+      <li><a href="#">메뉴4</a></li>
+      <li><a href="#">메뉴5</a></li>
+    </ul>
+  </nav>
+  <main class="main-section">
+    <section class="left-section">
+      <article>
+        <h4 class="sub-title">Title</h2>
+        <p>Description</p>
+        <div class="img"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla. Sed sagittis massa risus, vel feugiat nisi consectetur vitae. Donec porta libero vitae nisl accumsan faucibus. Maecenas varius tincidunt euismod. Quisque vitae consequat eros, et efficitur neque. Donec odio nisl, hendrerit a feugiat ut, euismod a tellus. Phasellus id augue sapien.</p>
+      </article>
+      <article>
+        <h4 class="sub-title">Title</h2>
+        <p>Description</p>
+        <div class="img"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla. Sed sagittis massa risus, vel feugiat nisi consectetur vitae. Donec porta libero vitae nisl accumsan faucibus. Maecenas varius tincidunt euismod. Quisque vitae consequat eros, et efficitur neque. Donec odio nisl, hendrerit a feugiat ut, euismod a tellus. Phasellus id augue sapien.</p>
+      </article>
+    </section>
+    <section class="right-section">
+      <article>
+        <h4 class="sub-title">Title</h2>
+        <div class="img"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a aliquet nisl, in commodo nulla. Sed sagittis massa risus, vel feugiat nisi consectetur vitae. Donec porta libero vitae nisl accumsan faucibus. Maecenas varius tincidunt euismod. Quisque vitae consequat eros, et efficitur neque.</p>
+      </article>
+      <article>
+        <h4 class="sub-title">Title</h2>
+        <div class="img"></div>
+      </article>
+    </section>
+  </main>
+  <footer>
+    <p>footer</p>
+  </footer>
+</div>
+        
+</body>
+</html>
