@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    
+<!--
+    객체
+    1. JavaScript 데이터 유형 중 하나이다.
+    2. 다양한 키 모음 및 더 복잡한 엔티티들을 저장하는데 사용된다.
+    3. 객체를 구성하는 하나의 데이터는 "속성(property)/값(value)" 조합으로 구성된다.
+    4. trailing comma (후행 쉼표)를 사용할 수 있다.
+    5. 형식
+      객체 = {
+        속성: 값, 
+        속성: 값, 
+        속성: 값,  // trailing comma (후행 쉼표)
+      }
+    6. 객체에 저장된 값은 점(.) 표기법 또는 대괄호([]) 표기법을 이용해 접근할 수 있다.
+      1) 객체.속성
+      2) 객체['속성']
+-->
+
+<!--
+    객체 프로퍼티(속성, property)
+    1. 문자열이나 Symbol을 사용할 수 있다.
+    2. 동적 프로퍼티 생성을 지원한다.
+    3. delete 연산자를 이용해서 객체의 특정 프로퍼티를 삭제할 수 있다.
+-->
+
+<!--
+    for in 문
+    1. 객체가 가지고 있는 모든 속성(property)을 for in 문으로 하나씩 조회할 수 있다.
+    2. 임의의 순서로 객체의 속성들을 조회한다.
+    3. for in 문 내부에서는 객체의 속성을 추가, 수정, 제거하지 않는 것이 좋다.
+    4. 조회된 속성은 문자열 타입이므로 해당 속성의 값을 확인하려면 대괄호 표기법을 사용해야만 한다.
+    5. 형식
+      for(속성 in 객체) {  // 이 때 속성은 문자열 타입
+        본문
+      }
+-->
+
+<!--
+    구조 분해 할당 (Destructuring Assignment)
+    1. 객체의 각 프로퍼티 값을 개별 변수에 쉽게 할당할 수 있는 JavaScript 표현식이다.
+    2. 객체의 프로퍼티 이름과 개별 변수의 이름을 동일하게 맞춰야 한다.
+    3. 객체의 각 프로퍼티를 해체한 뒤 새로운 이름의 변수에 할당할 수 있다.
+    4. 형식
+      { 변수1, 변수2, ... } = 객체
+-->
+
+<!-- 문제. <a> 태그와 <img> 태그 넣기 -->
+<h1>&lt;a&gt; 태그와 &lt;img&gt; 태그 넣기</h1>
+<script>
+  /*
+    목표)
+    <ul>
+      <li><a href="https://www.google.com/"><img src="../assets/images/logo_google.png" width="192px"></a></li>
+      <li><a href="https://www.naver.com/"><img src="../assets/images/logo_naver.png" width="192px"></a></li>
+    </ul>
+  */
+
+</script>
+<hr>
+
+</body>
+</html>

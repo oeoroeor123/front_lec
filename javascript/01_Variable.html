@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<!--
+    JavaScript 주석 처리 방식
+
+    // single-line comment
+    
+    /*
+      multi-line comment
+    */
+-->
+
+<!--
+    JavaScript
+    1. 웹 페이지를 위한 스크립트 언어이다.
+    2. 주로 브라우저에서 동작하지만 브라우저가 아닌 곳에서도 동작할 수 있는 프로그래밍 언어(예: Node.js)도 있다.
+    3. JavaScript 표준은 ECMAScript 언어 사양(ECMA-262)과 ECMAScript 국제화 API 사양(ECMA-402)을 따른다.
+    4. 주요 표준
+      1) ES5 : 2009년에 발표된 첫 번째 major revision
+      2) ES6 : 2015년에 발표된 두 번째 major revision
+      3) ES6 이후로는 매년 ES2016 같은 년도 표기 방식으로 매년 새로운 표준을 발표한다.
+      4) ES6 이후 JavaScript 표준을 통칭해서 ES6+ 로 나타낸다.
+-->
+
+<!--
+    JavaScript 출력 방식
+    1. 콘솔 > 텍스트 보는 용
+      console.log(출력)
+    2. 화면 > 태그 보는 용
+      document.write(출력)
+    3. 경고창
+      alert(출력)
+-->
+
+<!--
+    JavaScript primitive (원시값 > 기능은 없고 값만 가지고 있음)
+    1. 객체가 아니면서 메소드(method)와 속성(property)을 가지지 않는 데이터이다.
+    2. 종류 (7가지)
+      1) string
+        → 단일 문자와 문자열의 구분이 없음, 큰 따옴표("") 또는 작은 따옴표('') 또는 백틱(``) 모두 사용 가능
+      2) number
+        → 정수와 실수의 구분이 없음, 64비트 부동소수점 형식
+        → 123과 123.0의 타입은 동일
+      3) bigint
+        → 정수를 나타낼 수 있는 숫자 데이터 타입
+      4) boolean
+        → true 또는 false
+      5) undefined (=저장된적이 없는 값)
+        → 선언 후 값을 할당하지 않은 변수 또는 값이 전달되지 않은 매개변수에 자동으로 할당되는 값
+      6) symbol
+        → 유일한 식별자(unique identifier)를 만든 뒤 객체 속성(property)으로 사용할 수 있는 값
+      7) null (=의도적으로 없는 값으로 저장시키는 것)
+        → 존재하지 않거나 유효하지 않은 object 또는 주소를 의도적으로 가리키는 참조
+-->
+
+<!--
+    JavaScript 타입의 특징
+    1. 동적 타입(dynamic type)이다. (변수가 어떤 특정 타입과 연결되어 있지 않다. 언제든 타입을 바꿀 수 있다.)
+    2. 약 타입(weak type)이다. (일치하지 않는 타입이 포함된 경우 묵시적으로 스스로 타입 변환을 하여, 언제든지 타입이 변할 수 있다.)
+    3. primitive 값이 마치 속성이나 메소드가 있는 것처럼 동작한다.
+      1) 'hello'.length 처럼 속성(property)이 있는 것처럼 동작한다.
+      2) 'hello'.at(0) 처럼 메소드(method)가 있는 것처럼 동작한다.
+      3) 원시값 'hello'를 자동으로 String wrapper 객체로 포장하기 때문이다.
+-->
+
+<!--
+    JavaScript 변수 선언
+    1. 3가지 선언 키워드가 존재한다.
+    2. 종류와 특징
+                | 스코프      | 재선언 | 할당 전     | 재할당 | 용도
+      ----------|-------------|--------|-------------|--------|----------
+      1) var    | 전역 스코프 | 가능   | undefined   | 가능   | 전역 변수 > 지역 ( {} ) 내부 / 외부에서 모두 사용 가능함
+      2) let    | 블록 스코프 | 불가능 | undefined   | 가능   | 지역 변수 > 대부분의 변수 특징을 가짐
+      3) const  | 블록 스코프 | 불가능 | 사용 불가능 | 불가능 | 상수 > 딱 한 번만 값을 받을 수 있음 (할당 전 사용할 수 없고, 재할당도 불가함)
+-->
+
+<!--
+    JavaScript 변수명 (식별자) 규칙
+    1. 문자(ISO-8859-1 또는 Unicode), 숫자, 밑줄(_), 달러($) 기호 사용 가능
+    2. 첫 글자는 숫자일 수 없음
+    3. 대소문자 구분함
+    4. Camel Case 방식을 사용함 (myHome, myMoney,...첫번째는 소문자, 붙이는 단어 첫글자는 대문자)
+-->
+  <script>
+
+    /* var 선언 */
+    {
+      // 초기 할당 없이 선언하면 undefined 타입의 undefined 값을 가짐
+      var a;
+      console.log(a, typeof a);
+      // 재할당이 가능함
+      var a;
+      console.log(a, typeof a);
+      // numder 타입의 값 할당
+      a = 10;
+      console.log(a, typeof a);
+      // string 타입의 값 재 할당
+      a = 'hello world'
+      console.log(a, typeof a);
+    }
+    a = false;
+    console.log(a, typeof a);
+  
+
+    /* let 선언 (ES6) */
+    {
+      let b;
+      console.log(b, typeof b);
+
+    // 재 선언 불가능
+    // let b; > 실행 안됨
+
+    // number 타입 값 할당
+    b = 1.5;
+    console.log(b, typeof b);
+    // object 타입의 ull 값 할당
+    b = null;
+    console.log(b, typeof b);
+  }
+    // console.log(b, typeof b); > ReFerenceError 오류가 발생함
+
+
+    /* const 선언 (ES6, 상수) */
+    {
+      // 선언과 초기 할당이 모두 필요함
+      const c = 10;
+      console.log (c, typeof c);
+      // 재 할당 (값 바꾸기) 불가
+      // c = 20; > TypeError 오류가 발생함
+    }
+  </script>
+
+<!--
+    Template literals(Template strings)
+    1. 백틱(backtick)으로 묶은 문자열을 의미한다. > `` 
+    2. 여러 줄로 이루어진 문자열(multi-line strings)을 처리할 수 있다.
+    3. 문자열 보간(string interpolation) 기능을 사용할 수 있다.
+-->
+    <script>
+      // multi-line srtings
+      const sayHello = `안녕하세요
+반갑습니다`;
+      console.log(sayHello);
+      // expression interpolation (표현식 보간)
+      const myName = 'sam smith';
+      console.log(`My name is ${myName}`);
+    </script>
+
+<!--
+    호이스팅(hoisting)
+    1. 끌어 올리다.
+    2. JavaScript 인터프리터가 코드를 실행하기 전에 var 변수 선언, 함수 선언 또는 import를 해당 범위의 맨 위로 끌어올리는 것처럼 보이는 현상을 의미한다.
+    3. 동작의 예시
+      1) 변수가 선언된 줄(Line) 이전에 해당 범위에서 변수 값을 사용할 수 있다.
+      2) 변수가 선언된 줄(Line) 이전에 해당 범위에서 변수를 참조할 수 있다. 변수에 값이 없으면 undefined 값을 확인할 수 있다.
+      3) 범위가 다르면 호이스팅의 형태로 동작하지 않는다.
+    4. var 키워드로 선언된 변수는 코드 어디에 존재하든 가장 먼저 처리되는 것으로 이해할 수 있다.
+    5. 변수 선언과 초기화가 동시에 진행되는 경우 변수 선언만 분리해서 먼저 처리한다.
+-->
+<script>
+  myMoney = 1000; // > 2
+  console.log (myMoney); // > 3
+  var myMoney; // var 변수 선언은 호이스팅으로 가장 먼저 처리됨 > 1번째로 실행, 나머지 코드 순서대로 실행됨
+
+  console.log (myCar);
+  var myCar = 'sonata'; // var myCar; > 선언
+                        // myCar = 'sonata'; > 할당
+                        // 위 2개 코드로 분리한 뒤 var myCar;만 호이스팅하기에 sonata는 한 번만 처리됨
+  console.log (myCar);
+
+    </script>
+
+<!-- 문제. 데이터를 변수에 저장하기 -->
+ <script>
+  /*
+  별명, 성별, 나이를 적절한 변수에 할당하고 출력하기
+  예시) 내 별명은 슈퍼맨이고, 25살된 남자입니다.
+  */
+  const nickname = '슈퍼맨';
+  const gender = '여자';
+  const age = '29';
+  console.log(`내 별명은 ${nickname}이고 ${age}살 된 ${gender}입니다.`)
+ </script>
+
+</body>
+</html>
