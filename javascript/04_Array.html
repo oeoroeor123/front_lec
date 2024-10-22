@@ -14,7 +14,7 @@
     2. 배열의 길이는 length 속성(property)으로 확인할 수 있다.
     3. 배열의 길이를 조정할 수 있다. length 속성(property)을 직접 수정하는 것도 가능하다.
     4. 첫 번째 요소의 인덱스는 "0"이고 마지막 요소의 인덱스는 "length - 1" 이다.
-       (인덱스 : 각 요소의 위치 정보 > 배열의 길이가 5인 경우, 사용 가능한 인덱스는 0 ~ 4까지이다.)
+       (인덱스 : 각 요소의 위치 정보 ex_배열의 길이가 5인 경우, 사용 가능한 인덱스는 0 ~ 4까지이다.)
     5. 배열 요소는 대괄호 표기법으로 접근한다.
       배열[인덱스]
     6. 형식
@@ -23,22 +23,25 @@
 -->
     <h4>배열</h4>
     <script>
-      // 배열 이름 : ary 
+      // 배열 이름 : ary
       // 배열 요소 : ary[0](40), ary[1]('jessica'), ary[2](true) 
-      // 배열 인덱스 : 0,1,2 
+      // 배열 인덱스 : 0,1,2
       // 배열 길이 : ary.length(3)
       let ary = [40, 'jessica', true,];
       console.log('배열 이름', ary);
       console.log('배열 길이', ary.length);
       console.log('배열 요소', ary[0], ary[1], ary[2]);
-      ary.length = 4;
+
+      ary.length = 4; // 배열 길이 조정 (3 > 4)
       console.log('배열 길이', ary.length);
-      console.log('배열 요소', ary[3]);
+      console.log('배열 요소', ary[3]); // 3번 요소는 지정해주지 않아 undefined 상태임
       console.log('존재하지 않는 배열 요소', ary[4]);
 
-      // 모든 배열 요소를 for 문으로 조회하기 (인덱스를 기준으로 for 문 처리)
-      // 배열 이름 (= ary)을 제외하고는 나머지 코드는 고정임
-      // 인덱스 변수 i / j / k 는 고정임 > 나머지도 값이 나오긴 하나 고정값으로 주로 사용함
+      /*
+      모든 배열(ary)의 인덱스 요소(i)를 for 문으로 조회하기 (인덱스를 기준으로 for 문 처리)
+        배열 이름 (= ary)을 제외하고는 나머지 코드는 고정임
+        인덱스 변수 i / j / k 는 고정임 > 나머지도 값이 나오긴 하나 고정값으로 주로 사용함
+      */
       for(let i = 0; i < ary.length; i++) {
         document.write(`<div>${ary[i]}</div>`);
       }
@@ -47,10 +50,22 @@
     <hr>
 
     <script>
-      // 문제. 봄, 여름, 가을, 겨울 출력하기
+      // 문제. 봄, 여름, 가을, 겨울 출력하기 (12달을 3달씩 끊어서 > 몫 값으로 날씨 출력)
+      /*
+         month        month % 12    parseInt(month % 12 / 3)
+      -----------------------------------------------------
+      12,  1,  2       0,  1,  2            0
+       3,  4,  5       3,  4,  5            1
+       6,  7,  8       6,  7,  8            2
+       9, 10, 11       9, 10, 11            3
+      */
       let month = 10;
       let seasons = ['겨울', '봄', '여름', '가을'];
-      document.write(`<div>${month}월은 ${seasons[parseInt(month % 12 / 3)]}입니다.</div>`); // 12달을 3달씩 끊어서 > 몫 값으로 날씨 출력
+      document.write(`<div>${month}월은 ${seasons[parseInt(month % 12 / 3)]}입니다.</div>`);
+
+      let month2 = 3;
+      let seasons2 = ['겨울', '봄', '여름', '가을'];
+      document.write(`<div>${month2}월은 ${seasons2[parseInt(month2 % 12 / 3)]}입니다.</div>`);
     </script>
 
     <hr>
@@ -60,7 +75,7 @@
       let day = 1;
       let weekName = '화';
       let nDay = 30;
-      day += nDay;
+      day += nDay; // nDay 값을 day에 보냄 > 31일
       let dayNo = day % 7; // dayNo는 0 ~ 6 사이 값을 가짐
       let weekdays = ['월', '화', '수', '목', '금', '토', '일'];
       document.write(`<div>${nDay}일 후는 ${weekdays[dayNo]}요일 입니다.</div>`);
@@ -117,10 +132,11 @@
     <h4>구조 분해 할당</h4>
     <script>
       let weapons = ['gun', 'knife', 'sword', 'bomb'];
-      let [ w1, w2, w3, w4 ] = weapons; 
+      let [ w1, w2, w3, w4 ] = weapons;
       /*
-       모두 가능한 형태의 구조 분해 할당
+       모두 가능한 형태의 구조 분해 할당 (할당과 출력 값을 맞추면 됨)
        let [w1] = weapons;
+       document.write(`<div>${w1}</div>`);
        let [w1, w2] = weapons;
        let [w1, w2, w3] = weapons;
       */
@@ -132,15 +148,16 @@
 <!-- 문제. 링크 메뉴 만들기 -->
 <h4>링크 메뉴 만들기</h4>
 <script>
-  /*
+   /*
     목표)
     <div><a target="_blank" href="https://www.naver.com/">네이버</a></div>
     <div><a target="_blank" href="https://www.google.com/">구글</a></div>
     <div><a target="_blank" href="https://www.kakao.com/">카카오</a></div>
 
-    <div><a target="_blank" href="${sites[1]}" > ${sites[0]}</a></div>; > i-1씩 작아짐 (&{sites[i]} > &{sites[i-1]})
-    <div><a target="_blank" href="${sites[3]}" > ${sites[2]}</a></div>;
-    <div><a target="_blank" href="${sites[5]}" > ${sites[4]}</a></div>;
+    href= ${"주소가 있는 값"} > ${사이트 명(주소가 있는 값-1)}
+    <div><a target="_blank" href="${sites[1]}">${sites[0]}</a></div>
+    <div><a target="_blank" href="${sites[3]}">${sites[2]}</a></div>
+    <div><a target="_blank" href="${sites[5]}">${sites[4]}</a></div>
   */
  const sites = [
   '네이버', 'https://www.naver.com/',

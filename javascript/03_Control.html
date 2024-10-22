@@ -46,7 +46,7 @@
 <h4>if 문</h4>
 <script>
     // 문제1. 수, 우, 미, 양, 가, 잘못된 점수
-    let score = 92;
+    let score = 20;
     let grade;
     if(score < 0 || score > 100) {
       grade = '잘못된 점수';
@@ -61,24 +61,26 @@
     } else {
       grade = '가';
     }
-    document.write(`<div>${score}}점은 ${grade}입니다.</div>`);
+    document.write(`<div>${score}점은 ${grade}입니다.</div>`);
 </script>
 
   <hr>
 
   <script>
     // 문제2. 봄, 여름, 가을, 겨울
-    let month = 13;
+    let month = 10;
     let season;
-    // if(month >= 1 && month <= 3) {
-    //   season = '봄'; }
-    // else if(month >= 4 && month <= 6) {
-    //   season = '여름'; }
-    // else if(month >= 7 && month <= 9) {
-    //   season = '가을'; }
-    // else{
-    //   season = '겨울';}
-    // document.write (`<div> ${month}월은 ${season} 이다. </div>`);
+     /*
+      if(month >= 3 && month <= 5) {
+        season = '봄';
+      } else if(month >= 6 && month <= 8) {
+        season = '여름';
+      } else if(month >= 9 && month <= 11) {
+        season = '가을';
+      } else {
+        season = '겨울';
+      }
+    */
     let mod = month % 12;
     if(mod <= 2) {
       season = '겨울'; }
@@ -111,6 +113,7 @@
   </script>
 
   <hr>
+  
 <!--
   switch 문
   1. 형식
@@ -191,29 +194,33 @@
   <script>
     // 문제. 수, 우, 미, 양, 가, 잘못된 점수
     let jumsu = 55;
-    let hakjum = '수';
-    switch(parseInt(jumsu / 10)) { // 점수를 10으로 나눴을때 몫으로 학점을 구분
+    let hakjum;
+    switch(parseInt(jumsu / 10)) { // 점수를 10으로 나눴을때 나오는 몫으로 학점 구분
       case 10:
       case 9:
         hakjum = '수';
         break;
       case 8:
         hakjum = '우';
+        break;
       case 7:
         hakjum = '미';
+        break;
       case 6:
         hakjum = '양';
+        break;
       case 5:
       case 4:
-      case 5:
+      case 3:
       case 2:
       case 1:
       case 0:
         hakjum = '가';
+        break;
       default:
-        hakjum = '잘못된 점수';
+        hakjum ='잘못된 점수';
     }
-    document.write (`<div> ${jumsu}점은 ${hakjum}학점이다.</div>`);
+    document.write (`<div> ${jumsu}점은 ${hakjum}이다.</div>`);
   </script>
 
   <hr>
@@ -263,7 +270,9 @@
     <script>
       // 문제. 1~5 숫자 출력
       for(let c = 1; c <= 5; c++) {
-        document.write(`<div>${c}</div>`); // 본문이 먼저 보여지고, 상태 변화가 진행되는 순서이기에 c++ 中 ++ 의 위치는 영향이 없음 > 순서 : 1.초기 상태 2.조건식 3.본문 4.상태변화
+        document.write(`<div>${c}</div>`);
+        // 본문이 먼저 보여지고, 상태 변화가 진행되는 순서이기에 c++ 中 ++ 의 위치는 영향이 없음
+        // 순서 : 1.초기 상태(초기 값) 2.조건식(종료 값) 3.본문 4.상태변화(단계 값)
       }
     </script>
 
@@ -281,16 +290,16 @@
     <script>
       /* 문제 3. <select> 태그 만들기
         <select>
-          <Option>1</Option>
+          <option>1</option>
           ...
-          <Option>12</Option>
+          <option>12</option>
         </select>
       */
-     document.write('<select>');
-      for(let e = 1; e <= 12; e++) {
-        document.write (`<option>${e}</option>`);
+        document.write('<select>');
+      for(let month = 1; month <= 12; month++) {
+        document.write(`<option>${month}</option>`);
       }
-     document.write('</select>');
+      document.write('</select>');
     </script>
 
     <hr>
@@ -307,9 +316,9 @@
     <h4> for 문 중첩</h4>
     <script>
       for(let day = 1; day <= 5; day++) {
-        document.write (`<div>${day}일차</div>`);
-        for(let hour = 1; hour <= 8; hour++) { // 총 40시간 (day 5 * hour 8)
-          document.write (`<div>&nbsp;&nbsp;${hour}교시</div>`);
+        document.write(`<div>${day}일차</div>`);
+        for(let hour = 1; hour <= 8; hour++) {
+          document.write(`<div>&nbsp;&nbsp;${hour}교시</div>`);
         }
       }
     </script>
@@ -317,8 +326,8 @@
     <hr>
 
     <script>
-      // 문제 5. 이미지 3x3 형식으로 출력하기 > 동물 1~9번 이미지
-        /*
+    // 문제 5. 이미지 3x3 형식으로 출력하기 > 동물 1~9번 이미지
+    /*
             col=1  col=2  col=3
       row=1  1      2      3 
       row=2  4      5      6
@@ -326,30 +335,31 @@
       ---------------------------
       (1~9)  (row-1) * 3 + col
     */
-    for(let row = 1; row <= 3; row++) {
+    for(let row = 1; row <= 3; row++) { // 행
       document.write('<div>');
-      for(let col = 1; col <= 3; col++) {
+      for(let col = 1; col <= 3; col++) { // 열
         document.write(`<img src="../assets/images/animal${(row-1) * 3 + col}.jpg" width="100px">`);
       }
       document.write('</div>');
     }
 
-    for(let row = 1; row <= 4; row++) {
+    // 이미지 2x5 형식으로 출력하기 > 동물 1~10번 이미지 
+    for(let row = 1; row <= 2; row++) { // 행
       document.write('<div>');
-        for(let col = 1; col <= 4; col++) {
-          document.write(`<img src="../assets/images/animal${(row-1) *4 + col}.jpg" width="100px">`);
-        }
-        document.write('</div>');
+      for(let col = 1; col <= 5; col++) { // 열
+        document.write(`<img src="../assets/images/animal${(row-1) * 5 + col}.jpg") width="100px">`);
+      }
     }
     </script>
 
     <!--
     break 문
     1. switch 문을 종료할 때 사용
-    2. while 문이나 for 문 같은 반복문을 종요할 때 사용
+    2. while 문이나 for 문 같은 반복문을 종료할 때 사용
     -->
+    <h4> break 문</h4>
     <script>
-      // 무한 루프 (1~4만 실행됨)
+      // 무한 루프 : 먼저 num을 출력하고 ++ 1씩 증가하는데, if문에 num >= 5면 종료하는 break가 걸려있어 1~4만 출력됨
       let num = 1;
       while(true) {
         if(num >= 5) {
@@ -367,6 +377,7 @@
         document.write(`<div>${dan}단</div>`);
         for(let su = 1; su <= 9; su++) { 
           document.write(`<div>${dan} x ${su} = ${dan * su}</div>`);
+          // 각 구구단 5까지만 출력하기
           if(su === 5){
             break;
           }
