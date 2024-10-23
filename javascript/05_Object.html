@@ -63,11 +63,9 @@
             location: '용산'
           }
         }
-        document.write(`<div>상의 : ${closet.top}</div>`);
-        document.write(`<div>하의 : ${closet['bottom']}</div>`);
-        for(let i = 0; i < closet.bag.length; i++) {
-          document.write(`<div> 가방 : ${closet.bag[i]} </div>`);
-        }
+        document.write(`<div>상의: ${closet.top}</div>`);
+        document.write(`<div>하의: ${closet['bottom']}</div>`);
+        document.write(`<div>소지품: ${closet.bag}</div>`);
         document.write(`<div>일요일 약속 시간 : ${closet.sun.time}</div>`);
         document.write(`<div>일요일 약속 장소 : ${closet.sun.location}</div>`);
       </script>
@@ -90,6 +88,14 @@
       delete car.model;
       document.write(`<div>제조사: ${car.maker}</div>`);
       document.write(`<div>제조사: ${car.model}</div>`); // 위에서 삭제 되었으니 undefined 상태로 출력
+
+      /* 연습용 */
+      let food = {}
+      food.kind = '마라탕';
+      food.taste = '매움';
+      delete food.taste;
+      document.write(`<div>음식 종류 : ${food.kind}</div>`);
+      document.write(`<div>음식 맛 : ${food.taste}</div>`);
     </script>
 
     <hr>
@@ -118,6 +124,19 @@
         for(let prop in book) {
           document.write(`<div> 확인 가능 : ${book[prop]} </div>`); // prop에 전달되는 값은 'title', 'author', 'price'
         }
+
+        /* 연습용 */
+        let singer = {
+          name : 'bts',
+          memder : 'jk',
+          bd : 970901
+        }
+        for(let prop in singer) {
+          document.write(`<div>전정국_확인 가능 : ${singer[prop]}</div>`); // 문자열 타입으로 대괄호 표기법 사용해 조회
+        }
+        for(let prop in singer) {
+          document.write(`<div>전정국_확인 불가 : ${singer.prop}</div>`);
+        }
       </script>
 
       <hr>
@@ -125,7 +144,7 @@
 <!--
     구조 분해 할당 (Destructuring Assignment)
     1. 객체의 각 프로퍼티 값을 개별 변수에 쉽게 할당할 수 있는 JavaScript 표현식이다.
-    2. 객체의 프로퍼티 이름과 개별 변수의 이름을 동일하게 맞춰야 한다.
+    2. 객체의 '프로퍼티 이름과 개별 변수의 이름을 동일하게 맞춰'야 한다.
     3. 객체의 각 프로퍼티를 해체한 뒤 새로운 이름의 변수에 할당할 수 있다.
     4. 형식
       { 변수1, 변수2, ... } = 객체
@@ -149,6 +168,24 @@
       }
       let { q : question, a : answer } = qna; // 프로퍼티 q 값을 변수 q로 받아온 뒤 변수명을 question으로 바꿈
       document.write(`<div>${question}, ${answer}</div>`);
+
+      /* 연습용 */
+      let person2 = {
+        name2 : 'jimin',
+        age2 : 30,
+        isMarried2 : false,
+        contacts2 : ['010-1234-1234', '02-222-2222']
+      }
+      let{name2, isMarried2} = person2;
+      document.write(`<div>이름 : ${name2}</div>`);
+      document.write(`<div>${isMarried ? '기혼' : '미혼'}</div>`);
+
+      let qna2 = {
+        q2 : 'what is the capital of korea?',
+        a2 : 'seoul'
+      }
+      let { q2 : question2, a2: answer2 } = qna2;
+      document.write(`<div>${question2}, ${answer2}</div>`);
       </script>
       
       <hr>
@@ -183,6 +220,25 @@
       ]
       for(const site of sites) {
         document.write(`<div><a target="_balnk" href="${site.url}">${site.name}</a></div>`);
+      }
+
+      /* 연습용 */
+      const sites3 = [
+        {
+          name : '네이버',
+          url : 'https://www.naver.com/'
+        },
+        {
+          name : '구글',
+          url : 'https://www.google.com/'
+        },
+        {
+          name : '카카오',
+          url : 'https://www.kakao.com/'
+        }
+      ]
+      for(const site of sites) {
+        document.write(`<div><a target="_blank" href="${site.url}"">${site.name}</a></div>`);
       }
       </script>
   
@@ -222,6 +278,23 @@
       url: 'https://www.naver.com/',
       logo: 'logo_naver.png',
     },
+  ]
+  document.write('<ul>');
+  for(const portal of portals) {
+    document.write(`<li><a href="${portal.url}"><img src="../assets/images/${portal.logo}" width="192px"></a></li>`);
+  }
+  document.write('</ul>');
+
+  /* 연습용 */
+  const portal = [
+    {
+      url : 'https://www.google.com/',
+      logo : 'logo_google.png',
+    },
+    {
+      url: 'https://www.naver.com/',
+      logo: 'logo_naver.png',
+    }
   ]
   document.write('<ul>');
   for(const portal of portals) {
