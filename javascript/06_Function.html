@@ -9,7 +9,7 @@
   
 <!--
     함수 작성 방법
-    1. 함수 선언식    function 함수이름() {본문} 
+    1. 함수 선언식    function 함수이름() {본문}
     2. 함수 표현식    const 변수이름 = function() {} >> 함수를 변수에 저장할땐 const를 주로 사용함
     3. 화살표 표기법  const 변수이름 = () => {} >> 함수 표현식의 간단한 버전 (function 대신 => 사용)
 -->
@@ -37,11 +37,11 @@
   }
 
   // 함수 선언 연습
-  fnOne();
+ fnOne();
 
-  function fnOne() {
-    document.write(`<div>fnOne</div>`);
-  }
+ function fnOne() {
+  document.write(`<div>fnOne</div>`);
+ }
 </script>
 
 <hr>
@@ -79,10 +79,10 @@
 
   // 함수 표현 연습
   const fnTwo = function() {
-    document.write(`<div>fnTwo</div>`);
-  }
+  document.write(`<div>fnTwo</div>`);
+ }
 
-  fnTwo();
+ fnTwo();
 </script>
 
 <hr>
@@ -151,7 +151,7 @@
   // 호출 시 : 인자값 -> 선언 시 : 매개변수
 
   // 함수 호출 1 > 인자값 100을 함수 fnArgs에 전달
-  fnArgs(100); 
+  fnArgs(100);
 
   // 함수 호출 2 > 인자값 param(=200)을 함수 fnArgs에 전달
   var param = 200;
@@ -165,6 +165,24 @@
   // 함수 호출 3 > 인자값 arg(=300)을 함수 fnArgs에 전달
   var arg = 300;
   fnArgs(arg);
+
+
+  /* 연습용 */
+  // 함수 호출1
+  fnjk(28);
+
+  // 함수 선언
+  function fnjk(param) {
+    document.write(`<div>전달 인자:${param}</div>`);
+  }
+
+  // 함수 호출2 > 인자 값과 파라미터 이름을 통일하지 않은 경우
+  var jk = 300;
+  fnjk(jk);
+
+  // 함수 호출3 > 인자 값과 파라미터 이름을 통일한 경우
+  var param = 200;
+  fnjk(param);
 </script>
 
 <hr>
@@ -183,6 +201,19 @@
       document.write(`<div> ${params[i]}</div>`);
     }
   }
+
+  /* 연습용 */
+  // 함수 선언
+  function fnSpread2(...para) {
+    for(let i = 0; i < para.length; i++) {
+      document.write(`<div> ${para[i]}</div>`);
+    }
+  }
+
+  // 함수 호출
+  fnSpread2();
+  fnSpread2(1);
+  fnSpread2(1,2);
 </script>
 
 <hr> 
@@ -206,6 +237,16 @@
     document.write(`<div>${param1},${param2}</div>`);
   }
 
+
+  /* 연습용 */
+  // 함수 호출
+  fnDefault2(1); // 마지막 매개변수 (param2) 값 없으니 지정한 1000이 나옴
+  fnDefault2(1,2);
+
+  // 함수 선언 (디폴트 이용하기)
+  function fnDefault2(param1, param2 = 1000) {
+    document.write(`<div>${param1}, ${param2}</div>`);
+  }
 </script>
 
 <hr>
@@ -231,9 +272,23 @@
     fnInner(outerParam); // 전달 3
   }
 
-  // 함수 호출
+  // 외부 함수 호출
   // fnInner(); // 내부 함수 호출 불가능
   fnOuter(100); // 전달 1
+
+
+  /* 연습용 */
+  function fnO(outerparam2) {
+
+    function fnI(innerparam2) {
+      document.write(`<div>${outerparam2}</div>`);
+      document.write(`<div>${innerparam2}</div>`);
+    }
+
+    fnI(outerparam2);
+  }
+
+  fnO(200);
 </script>
 
 <hr>
@@ -264,6 +319,25 @@
   // 함수 호출 시 함수 이름을 인자로 사용
   fnLogin(fnIDCheck, fnPwCheck);
 
+
+  /* 연습용 */
+  function fnLogin2(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  function fnId() {
+    document.write(`<div>ID CHECK</div>`);
+  }
+  function fnPw() {
+    document.write(`<div>PW CHECK</div>`);
+  }
+
+  fnLogin2(fnId, fnPw);
+</script>
+
+<hr>
+
+<script>
   /* 2. 변수 이름 전달하기 (함수 표현식) */
   const fnLogout = function(fnSub1, fnSub2) {
     fnSub1();
@@ -279,6 +353,25 @@
   // 함수 호출 시 변수 이름을 인자로 사용
   fnLogout(fnSessionCheck, fnSessionClean); 
 
+
+  /* 연습용 */
+  const fnLogout2 = function(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  const fnSCheck = function() {
+    document.write(`<div>Session Check</div>`);
+  }
+  const fnSClean = function() {
+    document.write(`<div>Session Clean</div>`);
+  }
+
+  fnLogout2(fnSCheck, fnSClean);
+</script>
+
+<hr>
+
+<script>
   /* 3. 익명 함수 직접 전달하기 > 함수 이름 지정 없이 곧바로 전달 */
   function fnSignUp(fnSub) {
     fnSub();
@@ -287,6 +380,16 @@
   // 함수 호출 시 익명 함수를 직접 전달 (자주 사용됨)
   fnSignUp(function() {
     document.write(`<div>Authentication Complete</div>`);
+  });
+
+
+  /* 연습용 */
+  function fnSignUp2(fnSub) {
+    fnSub();
+  }
+
+  fnSignUp2(function() {
+    document.write(`<div>Authentication</div>`);
   });
 </script>
 
@@ -334,7 +437,6 @@
 
   const computer = fnRetObj(); // 객체 전체를 받기
   document.write(`<div>${computer.cpu} ${computer.memory} ${computer.ssd}</div>`);
-
 </script>
 
 <hr>
@@ -371,7 +473,7 @@
   // document.write(yesno);
 
  function checkWeight(weight) {
-  return weight >= 90 ? false : weight >= 40? true : confirm('부모님의 동의가 필요합니다. 동의하시면 확인, 아니면 취소를 눌러주세요.');
+  return weight >= 90 ? false : weight >= 40 ? true : confirm('부모님의 동의가 필요합니다. 동의하시면 확인, 아니면 취소를 눌러주세요.');
 
 // 위와 동일한 내용
 //   if(weight >= 90) {
@@ -388,7 +490,6 @@
  }else {
   document.write(`<div>놀이기구 탑승이 거절되었습니다.</div>`);
  }
-
 </script>
 
 <hr>
@@ -417,7 +518,6 @@
 repeatDo(function() {
   document.write(`<div>Do Something!</div>`);
 }, 3);
-
 </script>
 
 <hr>
@@ -441,16 +541,34 @@ function subtract(a,b) {return a - b;}
 function multiply(a,b) {return a * b;}
 function divide(a,b) {return a / b;}
 
-function calclate(fnSub, a, b) {
+function calculate(fnSub, a, b) {
   return fnSub(a,b);
 }
 
 const value1 = 5;
 const value2 = 2;
-document.write(`<div>${value1} + ${value2} = ${calclate(add, value1, value2)}</div>`); // add > fnSub로 전달 / value1, value2 > a,b로 전달
-document.write(`<div>${value1} - ${value2} = ${calclate(subtract, value1, value2)}</div>`);
-document.write(`<div>${value1} * ${value2} = ${calclate(multiply, value1, value2)}</div>`);
-document.write(`<div>${value1} / ${value2} = ${calclate(divide, value1, value2)}</div>`);
+document.write(`<div>${value1} + ${value2} = ${calculate(add, value1, value2)}</div>`); // add > fnSub로 전달 / value1, value2 > a,b로 전달
+document.write(`<div>${value1} - ${value2} = ${calculate(subtract, value1, value2)}</div>`);
+document.write(`<div>${value1} * ${value2} = ${calculate(multiply, value1, value2)}</div>`);
+document.write(`<div>${value1} / ${value2} = ${calculate(divide, value1, value2)}</div>`);
+
+
+/* 연습용 */
+function add(a,b) {return a + b;}
+function subtract(a,b) {return a - b;}
+function multiply(a,b) {return a * b;}
+function divide(a,b) {return a / b;}
+
+function calculate(fnSub,a,b) {
+  return fnSub(a,b);
+}
+
+const value3 = 10;
+const value4 = 5;
+document.write(`<div>${value3} + ${value4} = ${calculate(add, value3, value4)}</div>`);
+document.write(`<div>${value3} - ${value4} = ${calculate(subtract, value3, value4)}</div>`);
+document.write(`<div>${value3} * ${value4} = ${calculate(multiply, value3, value4)}</div>`);
+document.write(`<div>${value3} / ${value4} = ${calculate(divide, value3, value4)}</div>`);
 
 </script>
 <hr>
