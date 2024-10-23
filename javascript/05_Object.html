@@ -8,7 +8,7 @@
 <body>
     
 <!--
-    객체
+    객체 (속성엔 작은 따옴표 생략 후 작성 (=변수 이름) / 값은 각 타임에 맞춰서 작성)
     1. JavaScript 데이터 유형 중 하나이다.
     2. 다양한 키 모음 및 더 복잡한 엔티티들을 저장하는데 사용된다.
     3. 객체를 구성하는 하나의 데이터는 "속성(property)/값(value)" 조합으로 구성된다.
@@ -21,8 +21,57 @@
       }
     6. 객체에 저장된 값은 점(.) 표기법 또는 대괄호([]) 표기법을 이용해 접근할 수 있다.
       1) 객체.속성
-      2) 객체['속성']
+      2) 객체['속성'] > ''문자열 사용 필수
 -->
+      <h4>★json(제이슨) 자바스크립트 객체 표기법</h4>
+      <script>
+        let movie = {
+          title: '노트북',
+          director : '닉 카사베츠',
+          year : 2004,
+          actors : ['라이언 고슬링', '레이첼 맥아담스'], // 같은 문자열일땐 배열로
+          info : {
+            'nation' : '미국',
+            'genre' : '멜로/로맨스',
+            'runningTime' : 123
+          } // 문자열, 숫자 등 다양한 타입일땐 객체를 한번 더 사용함 > 객체 이름이 'info'
+        }
+        document.write(`<div>제목: ${movie.title} </div>`);
+        document.write(`<div>감독: ${movie['director']} </div>`);
+        document.write(`<div>개봉년도: ${movie['year']} </div>`);
+        document.write(`<div>배우: `);
+          for(let i = 0; i < movie.actors.length; i++) {
+            document.write(`${movie.actors[i]},`);
+          }
+          document.write(`</div>`);
+        document.write(`<div>제작국가: ${movie.info.nation} </div>`);
+        document.write(`<div>장르: ${movie.info.genre} </div>`);
+        document.write(`<div>러닝타임: ${movie.info.runningTime} </div>`);
+      </script>
+
+      <h4>객체2</h4>
+      <script>
+        let closet = {
+          top: '가디건',
+          inner: '나시',
+          bottom: '데님',
+          shoes: '스니커즈',
+          year: 29,
+          bag: ['커피', '핸드크림', '안경'],
+          sun: {
+            time: 15,
+            location: '용산'
+          }
+        }
+        document.write(`<div>상의 : ${closet.top}</div>`);
+        document.write(`<div>하의 : ${closet['bottom']}</div>`);
+        for(let i = 0; i < closet.bag.length; i++) {
+          document.write(`<div> 가방 : ${closet.bag[i]} </div>`);
+        }
+        document.write(`<div>일요일 약속 시간 : ${closet.sun.time}</div>`);
+        document.write(`<div>일요일 약속 장소 : ${closet.sun.location}</div>`);
+      </script>
+      
 
 <!--
     객체 프로퍼티(속성, property)
@@ -30,18 +79,48 @@
     2. 동적 프로퍼티 생성을 지원한다.
     3. delete 연산자를 이용해서 객체의 특정 프로퍼티를 삭제할 수 있다.
 -->
+    <h4>객체 프로퍼티</h4>
+    <script>
+      // 비어 있는 객체
+      let car = {}
+      // 동적 프로퍼티 추가
+      car.maker = 'bmw';
+      car.model = 'x5';
+      // 프로퍼티 삭제
+      delete car.model;
+      document.write(`<div>제조사: ${car.maker}</div>`);
+      document.write(`<div>제조사: ${car.model}</div>`); // 위에서 삭제 되었으니 undefined 상태로 출력
+    </script>
+
+    <hr>
 
 <!--
     for in 문
     1. 객체가 가지고 있는 모든 속성(property)을 for in 문으로 하나씩 조회할 수 있다.
     2. 임의의 순서로 객체의 속성들을 조회한다.
     3. for in 문 내부에서는 객체의 속성을 추가, 수정, 제거하지 않는 것이 좋다.
-    4. 조회된 속성은 문자열 타입이므로 해당 속성의 값을 확인하려면 대괄호 표기법을 사용해야만 한다.
+    4. 조회된 속성은 문자열 타입이므로 해당 속성의 값을 확인하려면 '대괄호 표기법을 사용'해야만 한다.
     5. 형식
       for(속성 in 객체) {  // 이 때 속성은 문자열 타입
         본문
       }
 -->
+      <h4> for in 문</h4>
+      <script>
+        let book = {
+          title : '채식주의자',
+          author : '한강',
+          price : 15000
+        }
+        for(let prop in book) {
+          document.write(`<div> 확인 불가 : ${book.prop} </div>`);
+        }
+        for(let prop in book) {
+          document.write(`<div> 확인 가능 : ${book[prop]} </div>`); // prop에 전달되는 값은 'title', 'author', 'price'
+        }
+      </script>
+
+      <hr>
 
 <!--
     구조 분해 할당 (Destructuring Assignment)
@@ -51,6 +130,63 @@
     4. 형식
       { 변수1, 변수2, ... } = 객체
 -->
+      <h4>객체 구조 분해 할당</h4>
+      <script>
+        let person = {
+          name : 'jungkook',
+          age : 28,
+          isMarried : false,
+          contacts : ['010-2222-2222', '02-333-3333']
+        }
+        let { name, isMarried } = person; // 할당 받고 싶은 속성 이름과 변수 이름을 동일하게 작성 (name, isMarried) 
+        document.write(`<div>이름 : ${name}</div>`);
+        document.write(`<div>${isMarried ? '기혼' : '미혼'}</div>`);
+      
+      // 새로운 변수 이름으로 재할당하기
+      let qna = {
+        q : 'what is the capital of korea?',
+        a : 'seoul',
+      }
+      let { q : question, a : answer } = qna; // 프로퍼티 q 값을 변수 q로 받아온 뒤 변수명을 question으로 바꿈
+      document.write(`<div>${question}, ${answer}</div>`);
+      </script>
+      
+      <hr>
+
+    <!-- 문제. 링크 메뉴 만들기 -->
+    <h4>링크 메뉴 만들기</h4>
+    <script>
+      /*
+        목표)
+        <div><a target="_blank" href="https://www.naver.com/">네이버</a></div>
+        <div><a target="_blank" href="https://www.google.com/">구글</a></div>
+        <div><a target="_blank" href="https://www.kakao.com/">카카오</a></div>
+
+        href= ${"주소가 있는 값"} > ${사이트 명(주소가 있는 값-1)}
+        <div><a target="_blank" href="${sites[1]}">${sites[0]}</a></div>
+        <div><a target="_blank" href="${sites[3]}">${sites[2]}</a></div>
+        <div><a target="_blank" href="${sites[5]}">${sites[4]}</a></div>
+      */
+      const sites = [
+        {
+          name : '네이버',
+          url : 'https://www.naver.com/'
+        },
+        {
+          name : '구글',
+          url : 'https://www.google.com/'
+        },
+        {
+          name : '카카오',
+          url : 'https://www.kakao.com/'
+        },
+      ]
+      for(const site of sites) {
+        document.write(`<div><a target="_balnk" href="${site.url}">${site.name}</a></div>`);
+      }
+      </script>
+  
+      <hr>
 
 <!-- 문제. <a> 태그와 <img> 태그 넣기 -->
 <h1>&lt;a&gt; 태그와 &lt;img&gt; 태그 넣기</h1>
@@ -62,7 +198,36 @@
       <li><a href="https://www.naver.com/"><img src="../assets/images/logo_naver.png" width="192px"></a></li>
     </ul>
   */
+    const sites2 = [
+      {
+        Image : '../assets/images/logo_google.png',
+        url : 'https://www.google.com/'
+      },
+      {
+        Image : '../assets/images/logo_naver.png',
+        url : 'https://www.naver.com/'
+      }
+    ]
+    for (const site2 of sites2) {
+      document.write(`<div><a href="${site2.url}"><img src="${site2.Image}" width="192px"></a></div>`);
+    }
 
+    // 선생님 작성법 > ul 태그 살리고, logo에 주소 전체가 아닌 파일명만 기입해서 변수로 출력함
+    const portals = [
+    {
+      url: 'https://www.google.com/',
+      logo: 'logo_google.png',
+    },
+    {
+      url: 'https://www.naver.com/',
+      logo: 'logo_naver.png',
+    },
+  ]
+  document.write('<ul>');
+  for(const portal of portals) {
+    document.write(`<li><a href="${portal.url}"><img src="../assets/images/${portal.logo}" width="192px"></a></li>`);
+  }
+  document.write('</ul>');
 </script>
 <hr>
 

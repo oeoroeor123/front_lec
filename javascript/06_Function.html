@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<!--
+    함수 작성 방법
+    1. 함수 선언식    function 함수이름() {본문} 
+    2. 함수 표현식    const 변수이름 = function() {} >> 함수를 변수에 저장할땐 const를 주로 사용함
+    3. 화살표 표기법  const 변수이름 = () => {} >> 함수 표현식의 간단한 버전 (function 대신 => 사용)
+-->
+
+<!--
+    함수 선언식
+    1. 함수 이름을 결정해서 함수를 만드는 방식이다. (기명 함수 : 이름 있는 함수)
+    2. 함수 선언식은 호이스팅(hoisting)이 되므로 존재하는 코드 Line 에 상관 없이 언제나 호출할 수 있다.
+    3. 함수 선언식 예시
+      // 함수 선언 (함수 만들기)
+      function named() {
+        본문
+      }
+      // 함수 호출 (함수 사용하기)
+      named();
+-->
+<h4>함수 선언식</h4>
+<script>
+  // 함수 호출
+  fnDeclare();
+
+  // 함수 선언 (함수 호출을 위에 했지만, 함수 선언식은 호이스팅되어 항상 먼저 처리됨)
+  function fnDeclare() {
+    document.write(`<div>fnDeclare</div>`);
+  }
+
+  // 함수 선언 연습
+  fnOne();
+
+  function fnOne() {
+    document.write(`<div>fnOne</div>`);
+  }
+</script>
+
+<hr>
+
+<!--
+    함수 표현식
+    1. 함수를 변수에 저장하는 방식이다.
+    2. 주로 이름이 없는 익명 함수를 변수에 저장한다. (기명 함수도 함수 표현식이 가능하다.)
+    3. 변수를 함수처럼 호출해서 사용할 수 있다.
+    4. 함수 표현식은 호이스팅(hoisting)이 되지 않는다.
+    5. 함수 표현식 예시
+      1) 익명 함수
+        // 함수 표현식 (함수를 만들어서 변수에 할당하기)
+        const expression = function() {
+          본문
+        }
+        // 함수 호출 (함수 사용하기)
+        expression();
+      2) 기명 함수
+        function named() {
+          본문
+        }
+        const expression = named;
+        expression();  또는  named();
+-->
+<h4>함수 표현식</h4>
+<script>
+  // 함수 표현 (함수 표현식은 호이스팅 되지 않기때문에 반드시 호출 전에 작성해야함)
+  const fnExpr = function() {
+    document.write(`<div>fnExpr</div>`);
+  }
+
+  // 함수 호출
+  fnExpr();
+
+  // 함수 표현 연습
+  const fnTwo = function() {
+    document.write(`<div>fnTwo</div>`);
+  }
+
+  fnTwo();
+</script>
+
+<hr>
+
+<!--
+    화살표 함수 표기법
+    1. 함수 표현식의 간결한 대안이다.
+    2. 약간의 의미적 차이와 의도적인 사용상 제한을 가지고 있다.
+      1) 자체 바인딩이 this 에 포함되지 않는다.
+      2) 객체를 생성하는 생성자로 사용할 수 없다.
+      3) 객체에 포함된 메소드로 사용할 수 없다.
+    3. 문법 특징
+      1) 단일 매개변수인 경우 매개변수 소괄호()를 생략할 수 있다.
+      2) 단일 실행문인 경우 본문 중괄호{}를 생략할 수 있다.
+      3) 단일 return 인 경우 return 키워드 자체를 생략할 수 있다.
+    4. 화살표 함수의 여러 예시들
+      1) () => expression
+      2) param => expression
+      3) (param) => expression
+      4) (param1, param2) => expression
+      5) () => {
+            statements
+          }
+      6) param => {
+            statements
+          }
+      7) (param) => {
+            statements
+          }
+      8) (param1, param2) => {
+            statements
+          }
+-->
+<h4>화살표 함수</h4>
+<script>
+  // 화살표 함수는 익명 함수의 일종이기에 표현식으로만 사용
+  const fnArrow = () => {
+    document.write(`<div>fnArrow</div>`);
+  }
+
+  // 함수 호출
+  fnArrow();
+
+  // 화살표 함수 연습
+  const fnThree = () => {
+    document.write(`<div>fnThree</div>`);
+  }
+
+  fnThree();
+</script>
+
+<hr>
+
+<!--
+    인자와 매개변수
+    인자(argument) : 함수를 호출할 때 해당 함수에 전달하는 값
+    매개변수(parameter) : 함수로 전달된 인자를 저장하는 변수
+
+    1. 매개변수를 선언할 때 선언 키워드(var, let, const)는 사용하지 않는다. > 변수 이름만 작성함
+    2. 모든 데이터(인자값, 배열, 객체, 함수 등)를 인자로 전달할 수 있다.
+    3. 전개 구문(Spread Syntax)을 이용해 0개 이상의 인자를 처리할 수 있다.
+    4. 인자가 전달되지 않는 경우에 사용할 디폴트 값을 지정할 수 있다.
+-->
+<h4>인자와 매개변수</h4>
+<script>
+  // 호출 시 : 인자값 -> 선언 시 : 매개변수
+
+  // 함수 호출 1 > 인자값 100을 함수 fnArgs에 전달
+  fnArgs(100); 
+
+  // 함수 호출 2 > 인자값 param(=200)을 함수 fnArgs에 전달
+  var param = 200;
+  fnArgs(param);
+  
+  // 함수 선언 > 호이스팅 되기에 순서 상관 없음
+  function fnArgs(param) { // 매개변수 : param
+    document.write(`<div>전달된 인자 : ${param}</div>`);
+  }
+
+  // 함수 호출 3 > 인자값 arg(=300)을 함수 fnArgs에 전달
+  var arg = 300;
+  fnArgs(arg);
+</script>
+
+<hr>
+
+<script>
+  // 전개 구문(Spread Syntax) 활용
+  
+  // 함수 호출
+  fnSpread(); // 호출 값 없음
+  fnSpread(100);
+  fnSpread(100, 200);
+
+  // 함수 선언
+  function fnSpread(...params) { // 인자의 개수가 0개 이상, params : 배열로 처리
+    for(let i = 0; i < params.length; i++) {
+      document.write(`<div> ${params[i]}</div>`);
+    }
+  }
+</script>
+
+<hr> 
+
+<script>
+  // 매개변수의 디폴트 값
+   // 호출할 인자 값이 없을때 사용할 디폴트 값
+
+  // 함수 호출
+  fnDefault(100); // 100은 첫 번째 인자 값 > param1에 전달
+  fnDefault(100, 200);
+
+  // 함수 선언 (short circuit 이용하기) - 올드 스타일
+  // function fnDefault(param1, param2) {
+  //   param2 = param2 || 1;
+  //   document.write(`<div>${param1},${param2}</div>`);
+  // }
+
+  // 함수 선언 (디폴트 이용하기)
+  function fnDefault(param1, param2 = 1) { // 마지막 매개변수만 디폴트 처리가 가능
+    document.write(`<div>${param1},${param2}</div>`);
+  }
+
+</script>
+
+<hr>
+
+<!--
+    함수의 중첩
+    1. 함수 내부에 또 다른 함수를 선언할 수 있다. (함수 선언식 사용)
+    2. 외부 함수는 내부 함수의 변수를 사용할 수 없다.
+    3. 내부 함수는 외부 함수의 변수를 사용할 수 있다.
+-->
+<h4>함수 중첩</h4>
+<script>
+  // 외부 함수 : fnOuter
+  function fnOuter(outerParam) {  // 전달 2
+
+    // 내부 함수 : fnInner (내부 함수는 외부 함수의 내부에서만 호출 가능)
+    function fnInner(innerParam) { // 전달 4
+    document.write(`<div>${innerParam}</div>`);
+    document.write(`<div>${outerParam}</div>`); // 내부 함수는 외부 함수의 변수를 참조 할 수 있음
+    }
+
+    // 내부 함수 호출
+    fnInner(outerParam); // 전달 3
+  }
+
+  // 함수 호출
+  // fnInner(); // 내부 함수 호출 불가능
+  fnOuter(100); // 전달 1
+</script>
+
+<hr>
+
+<!--
+    콜백 함수
+    1. 인자로 다른 함수에 전달된 함수를 의미한다.
+    2. 함수1을 전달 받은 함수2는 본문에서 함수1을 다시 호출해야 하므로 "callback"이라고 한다.
+    3. 함수 이름만 전달하거나 함수 자체를 전달한다.
+       1) 함수 선언식 : 함수 이름을 인자로 사용
+       2) 함수 표현식 : 변수 이름을 인자로 사용
+       3) 익명 함수(function(){} 또는 ()=>{})를 직접 인자로 사용
+-->
+<h4>콜백 함수</h4>
+<script>
+  /* 1. 함수 이름 전달하기 (함수 선언식) */
+  function fnLogin(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  function fnIDCheck() {
+    document.write(`<div>ID Check Complete</div>`);
+  }
+  function fnPwCheck() {
+    document.write(`<div>Pw Check Complete</div>`);
+  }
+
+  // 함수 호출 시 함수 이름을 인자로 사용
+  fnLogin(fnIDCheck, fnPwCheck);
+
+  /* 2. 변수 이름 전달하기 (함수 표현식) */
+  const fnLogout = function(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  const fnSessionCheck = function() {
+    document.write(`<div>Session Check Complete</div>`);
+  }
+  const fnSessionClean = function() {
+    document.write(`<div>Session Clean complete</div>`);
+  }
+
+  // 함수 호출 시 변수 이름을 인자로 사용
+  fnLogout(fnSessionCheck, fnSessionClean); 
+
+  /* 3. 익명 함수 직접 전달하기 > 함수 이름 지정 없이 곧바로 전달 */
+  function fnSignUp(fnSub) {
+    fnSub();
+  }
+
+  // 함수 호출 시 익명 함수를 직접 전달 (자주 사용됨)
+  fnSignUp(function() {
+    document.write(`<div>Authentication Complete</div>`);
+  });
+</script>
+
+<hr>
+
+<!--
+    반환
+    함수 실행이 끝나고 함수를 호출한 곳으로 돌려보내는 값
+    1. 반환 값이 존재하더라도 반환타입은 작성하지 않는다.
+    2. "return 값" 을 통해서 값을 반환할 수 있다.
+    3. "return" 을 통해서 함수 실행을 종료할 수 있다.
+-->
+<h4>반환</h4>
+<script>
+  /* 항상 1을 반환하는 함수 */
+  function fnRetOne() {
+    return 1; // 함수 호출한 곳으로 1을 반환
+  }
+  document.write(`<div>${fnRetOne()}</div>`);
+
+  /* 인자보다 1 큰 값을 반환하는 함수 */
+  function fnPulsOne(param) {
+    return param + 1; // 인자값 10에 1 더해서 11 출력
+  }
+  document.write(`<div>${fnPulsOne(10)}</dib>`);
+
+  /* 배열을 반환하는 함수 */
+  function fnRetAry() {
+    return ['봄','여름','가을','겨울'];
+  }
+  const [a,b,c] = fnRetAry(); // 배열의 구조 분해 할당 활용 (const [a,b] = ['봄','여름','가을','겨울'];)
+  document.write(`<div>${a} ${b} ${c}</div>`);
+
+  /* 객체를 반환하는 함수 */
+  function fnRetObj() {
+    return {
+      cpu: 'i7',
+      memory: '32GB',
+      gpu: 'GTX4090',
+      ssd: '1TB'
+    }
+  }
+  const {cpu, memory} = fnRetObj(); // 객체의 구조 분해 할당 활용 
+  document.write(`<div>${cpu} ${memory}</div>`);
+
+  const computer = fnRetObj(); // 객체 전체를 받기
+  document.write(`<div>${computer.cpu} ${computer.memory} ${computer.ssd}</div>`);
+
+</script>
+
+<hr>
+
+<script>
+  // 함수 실행 종료를 위한 return 문
+  function fnEat(food) {
+    if(food === '대봉')
+      return;  // 함수 실행 종료 코드
+    document.write(`<div>${food} 잘먹겠습니다.</div>`);
+  }
+
+  fnEat('사과');
+  fnEat('샤인머스캣');
+  fnEat('대봉');
+</script>
+
+<hr>
+
+<!-- 문제1. checkWeight() 함수 구현하기 -->
+<h4>checkWeight() 함수</h4>
+<script>
+  /*
+    checkWeight() 함수
+    1. 기능
+      인자로 전달된 몸무게가 40 이상 90 미만이면 true, 40 미만이면 보호자의 동의 여부(confirm 이용), 90 이상이면 false 를 반환하는 함수
+    2. 인자
+      몸무게
+    3. 반환
+      boolean
+  */
+
+  // const yesno = confirm('확인 또는 취소?');
+  // document.write(yesno);
+
+ function checkWeight(weight) {
+  return weight >= 90 ? false : weight >= 40? true : confirm('부모님의 동의가 필요합니다. 동의하시면 확인, 아니면 취소를 눌러주세요.');
+
+// 위와 동일한 내용
+//   if(weight >= 90) {
+//     return false;
+//   } else if(weight >= 40 ) {
+//     return true;
+//   } else {
+//     return confirm('부모님의 동의가 필요합니다. 동의하시면 확인, 아니면 취소를 눌러주세요.');
+//   }
+ }
+ weight = 60;
+ if(checkWeight(weight)) {
+  document.write(`<div>놀이기구 탑승이 가능합니다.</div>`);
+ }else {
+  document.write(`<div>놀이기구 탑승이 거절되었습니다.</div>`);
+ }
+
+</script>
+
+<hr>
+
+<!-- 문제2. repeatDo() 함수 구현하기 -->
+<h4>repeatDo() 함수</h4>
+<script>
+  /*
+    repeatDo() 함수
+    1. 기능
+      첫 번째 인자로 전달한 함수를 두 번째 인자로 전달한 횟수만큼 반복 수행하는 함수
+    2. 인자
+      1) 실행할 함수
+      2) 함수를 반복할 횟수
+    3. 반환
+      없음
+  */
+
+// 함수 선언
+  function repeatDo(fnSub, count) {
+  for(let n = 0; n < count; n++)
+  fnSub();
+}
+
+// 함수 호출
+repeatDo(function() {
+  document.write(`<div>Do Something!</div>`);
+}, 3);
+
+</script>
+
+<hr>
+
+<!-- 문제3. calculate() 함수 구현하기 -->
+<h4>calculate() 함수</h4>
+<script>
+  /*
+    calculate() 함수
+    1. 기능
+      첫 번째 인자로 전달한 함수를 이용해서 두 번째 인자와 세 번째 인자를 연산하고 그 결과를 반환하는 함수
+    2. 인자
+      1) 연산을 수행할 함수
+      2) 연산을 수행할 값1
+      3) 연산을 수행할 값2
+    3. 반환
+      연산 수행 결과 값
+  */
+function add(a,b) {return a + b;}
+function subtract(a,b) {return a - b;}
+function multiply(a,b) {return a * b;}
+function divide(a,b) {return a / b;}
+
+function calclate(fnSub, a, b) {
+  return fnSub(a,b);
+}
+
+const value1 = 5;
+const value2 = 2;
+document.write(`<div>${value1} + ${value2} = ${calclate(add, value1, value2)}</div>`); // add > fnSub로 전달 / value1, value2 > a,b로 전달
+document.write(`<div>${value1} - ${value2} = ${calclate(subtract, value1, value2)}</div>`);
+document.write(`<div>${value1} * ${value2} = ${calclate(multiply, value1, value2)}</div>`);
+document.write(`<div>${value1} / ${value2} = ${calclate(divide, value1, value2)}</div>`);
+
+</script>
+<hr>
+
+</body>
+</html>
