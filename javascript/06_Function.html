@@ -456,6 +456,27 @@
 
 <hr>
 
+<h4>화살표 함수 다루기</h4>
+<script>
+// * return (반환)이 있을 경우, document.write로 호출 / 없을 경우 함수이름();로 호출
+// 인자 x / 반환 x : 본문 실행 코드가 1개로 중괄호{} 생략
+const fnArgRet1 = () => document.write('<div>fnArgRet1</div>');
+fnArgRet1 ();
+
+// 인자 O / 반환 X : 단일 매개 변수로 소괄호() 생략 & 실행 코드 1개로 중괄호{} 생략
+const fnArgRet2 = param => document.write(`<div> fnArgRet2 : ${param}</div>`);
+fnArgRet2 (10);
+
+// 인자 X / 반환 O : 본문 실행 코드 1개로 중괄호 생략 & 함수 본문이 return 뿐이면 return 문 생략
+const fnArgRet3 = () => 'hello'; // return 생략
+document.write(`<div>fnArgRet3 : ${fnArgRet3()}</div>`); // 함수 호출 위해 함수이름 쓰고, 인자 값은 없으니 ()
+
+// 인자 O / 반환 O : 단일 매개 변수로 () 생략 & 실행 코드 1개로 {} 생략, 함수 본문 return 1개로 생략
+const fnArgRet4 = param => param + 1; // return 생략
+document.write(`<div>fnArgRet4 : ${fnArgRet4(10)}</div>`);
+
+</script>
+
 <!-- 문제1. checkWeight() 함수 구현하기 -->
 <h4>checkWeight() 함수</h4>
 <script>
@@ -490,6 +511,20 @@
  }else {
   document.write(`<div>놀이기구 탑승이 거절되었습니다.</div>`);
  }
+
+ /* 연습용 */
+function checkw(weight) {
+  return weight >= 70 ? false : weight >= 20 ? true : confirm('부모님의 동의가 필요합니다.');
+  }
+
+  weight = 55;
+  if(checkw(weight)) {
+    document.write(`<div>탑승 가능</div>`);
+  }else {
+    document.write(`<div>탑승 불가<div>`);
+  }
+
+ 
 </script>
 
 <hr>
@@ -518,6 +553,18 @@
 repeatDo(function() {
   document.write(`<div>Do Something!</div>`);
 }, 3);
+
+/* 연습용 */
+// 선언
+function repeatDo2(fnSub3, count) {
+  for(let n = 0; n < count; n++)
+  fnSub3();
+}
+
+// 호출
+repeatDo2(function() {
+  document.write(`<div> hi ! </div>`);
+}, 2);
 </script>
 
 <hr>
@@ -554,22 +601,6 @@ document.write(`<div>${value1} / ${value2} = ${calculate(divide, value1, value2)
 
 
 /* 연습용 */
-function add(a,b) {return a + b;}
-function subtract(a,b) {return a - b;}
-function multiply(a,b) {return a * b;}
-function divide(a,b) {return a / b;}
-
-function calculate(fnSub,a,b) {
-  return fnSub(a,b);
-}
-
-const value3 = 10;
-const value4 = 5;
-document.write(`<div>${value3} + ${value4} = ${calculate(add, value3, value4)}</div>`);
-document.write(`<div>${value3} - ${value4} = ${calculate(subtract, value3, value4)}</div>`);
-document.write(`<div>${value3} * ${value4} = ${calculate(multiply, value3, value4)}</div>`);
-document.write(`<div>${value3} / ${value4} = ${calculate(divide, value3, value4)}</div>`);
-
 </script>
 <hr>
 

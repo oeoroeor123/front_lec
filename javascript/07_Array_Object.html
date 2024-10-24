@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!--
+  const car = {
+  a : 1, // 자체 속성
+  b : 2, // 자체 속성
+  __proto__ : { // prototype 속성 (비공개 속성)
+    b : 3, // 프로토타입 속성
+    c : 4 // 프로토타입 속성
+  }
+  }
+  car.a === 1 : 자체 속성에서 찾아옴
+  car.b === 2 : 자체 속성에서 찾아옴
+  car.b       : 프로토타입 속성의 b는 찾아올 수 없음 (애초에 자체 속성과 동일한 이름으로 프로토타입 속성 코드를 짜면 안됨)
+  car.c === 4 : 자체 속성엔 c가 없으므로 프로토타입 속성에서 찾아옴
+                프로토타입 속성에 속한 것들은 프로토타입에 속해 있음을 명시하지 않음
+-->
+<!--
+    Array 내장 객체 
+    객체 안에 함수가 들어갈 수 있는데, 객체 내부 함수는 함수가 아닌 메소드로 불림
+    객체.메소드 = 자체 속성 / 객체.prototype.메소드 = 비공개 속성
+
+    1. Array.isArray(value)
+        → 전달된 value 가 Array 이면 true 아니면 false 반환
+
+    2. Array.prototype.pop()
+        → 배열의 마지막 요소를 제거하고 그 요소를 반환
+        → 배열이 비어 있으면 undefined 반환
+    
+    3. Array.prototype.push(element1[, element2[, ...]])
+        → 배열의 끝에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
+        
+    4. Array.prototype.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        → 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경함
+        → start : 배열의 변경을 시작할 인덱스
+        → 옵션 deleteCount : 배열에서 제거할 요소의 개수
+          1) 생략하면 start 부터 모든 요소를 제거
+          2) 0 이하이면 아무 요소도 제거하지 않음
+        → 옵션 item1, item2, ... : 배열에 추가할 요소들
+
+    5. Array.prototype.forEach(callbackFn(element[, index[, array]])[, thisArg])
+        → 각 배열 요소에 대해 제공한 callbackFn 함수를 한 번씩 실행함
+        → callbackFn
+          1) 반환값 : 없음(undefined)
+          2) 매개변수
+            (1) element : 배열에서 처리 중인 현재 요소
+            (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+            (3) array   : forEach() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+
+    6. Array.prototype.map(callbackFn(currentValue[, index[, array]])[, thisArg])
+        → 제공된 callbackFn 함수에 의해 반환된 요소들을 모은 새로운 배열을 반환함
+        → callbackFn
+          1) 반환값 : 배열의 각 요소를 callbackFn 내부에서 처리한 값
+          2) 매개변수
+            (1) currentValue : 처리할 현재 요소
+            (2) index        : 처리할 현재 요소의 인덱스
+            (3) array        : map() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+
+    7. Array.prototype.filter(callbackFn(element[, index[, array]])[, thisArg])
+        → 제공된 callbackFn 함수에 의해 구현된 테스트를 통과한 요소들만 모은 새로운 배열을 반환함
+        → callbackFn
+          1) 반환값 : true 또는 false
+          2) 매개변수
+            (1) element : 배열에서 처리 중인 현재 요소
+            (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+            (3) array   : filter() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+    
+    8. Array.prototype.entries()
+        → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
+-->
+<h4>Array 객체 생성하기</h4>
+<script>
+  // Array 생성자 (함수)를 이용하는 방법 > new 생략 가능
+  // new Array()
+  // new Array(length)
+  // new Array(element1, element2, ...)
+  const ary1 = new Array();
+  const ary2 = new Array(3);
+  const ary3 = new Array('a','b','c');
+
+  console.log(ary1);
+  console.log(ary2);
+  console.log(ary3);
+
+  // 배열 리터럴 표기법을 이용하는 방법 (= const ary3 = new Array('a','b','c');과 동일하며, 길이까지 한번에 잡아줌)
+  const ary4 = ['x','y','z'];
+  console.log(ary4);
+</script>
+
+<hr>
+<h4>Array 매소드 실습</h4>
+<script>
+ let months = ['Jen','Mar','April','April','June'];
+
+ // Array.isArray() > 자체 속성 호출은 객체 이름으로 진행
+ document.write(`<div>${Array.isArray(months)}</div>`);
+
+ // Array.prototype.pop() > 배열의 마지막 요소 삭제 / 삭제한 요소를 반환
+ // ['Jen','Mar','April','April','June']
+ document.write(`<div>${months.pop()}</div>`);
+
+ // Array.prototype.push() > 배열의 마지막 요소 값 추가 / 추가된 상태의 배열의 길이를 반환
+ // ['Jen','Mar','April','April','May']
+ document.write(`<div> ${months.push('May')}</div>`);
+ 
+
+ // Array.prototype.splice() > 추가, 삭제, 수정 모두 가능한 메소드 / 인덱스 시작은 0 부터
+ // ['Jen','Mar','April','May']
+ months.splice(2, 1); // 인덱스 2부터 1개 요소 삭제
+
+ // ['Jen','Feb','Mar','April','May']
+ months.splice(1,0,'Feb'); // 인덱스 1부터 0개 요소 삭제 후 'Feb' 추가
+
+ // ['Jan','Feb','Mar','April','May']
+ months.splice(0,1,'Jan') // 인덱스 0부터 1개 요소 삭제 후 'Jan' 추가 > 인덱스 0 수정
+
+ for(let i = 0; i < months.length; i++)
+  document.write(`<div>${months[i]}</div>`);
+
+
+ // Array.prototype.forEach() > 배열 순회 : 배열 요소들을 하나씩 순차적으로 매개 변수(element)에 넣어줌 
+  months.forEach(element => document.write(`<div>${element}</div>`));
+  months.forEach((element, i) => document.write(`<div>${i + 1}월 : ${element}</div>`));
+
+
+ // Array.prototype.map() > 기존 배열 요소들에 새로운 요소를 추가로 반환
+ // ['Jan월','Feb월','Mar월','April월','May월']
+
+ /* 메소드 연결
+ const ary = 값을 바로 .forEach에 붙이기
+ const ary = months.map(element => element + '월')
+ ary.forEach(element => document.write(`<div>${element}</div>`));
+ */
+ months.map(element => element + '월').forEach(element => document.write(`<div>${element}</div>`));
+
+ 
+ // Array.prototype.filter() > 조건식을 만족하는 요소만 가지는 새로운 배열을 반환
+ months.filter((element,i) => i % 2 === 0) // 인덱스를 2로 나눈 나머지가 0인 요소(짝수)만 배열로 반환
+ .forEach(element => document.write(`<div>${element}</div>`));
+ 
+ 
+ // Array.prototype.entries() > 인덱스와 요소를 쌍으로 가진 새로운 배열 반복자를 반환
+ var itr = months.entries();
+ console.log(itr);
+ console.log(itr.next()); // {done: false, value: [0,'Jan']}
+ console.log(itr.next()); // {done: false, value: [1,'Feb']}
+ console.log(itr.next());
+ console.log(itr.next());
+ console.log(itr.next());
+ console.log(itr.next()); // {domne: ture, value: undefined}
+
+ // next 메소드와 while문
+ var itr = months.entries(); // 반복자는 1회용이라서, 다 쓰면 다시 생성해야 함
+ while((obj = itr.next()).done === false ) {
+  console.log(obj.value);
+ }
+
+ // for of 문
+ for(const [i, element] of months.entries()) {
+  console.log(i, element);
+ }
+
+</script>
+
+<hr>
+
+<!-- 문제1. displayImage() 함수 구현하기 -->
+<h4>displayImage() 함수</h4>
+<script>
+  /*
+    displayImage() 함수
+    1. 기능
+      인자로 전달된 배열에 포함된 모든 이미지를 화면에 출력하는 함수
+    2. 인자
+      이미지 파일의 이름이 저장된 배열
+    3. 반환
+      없음
+  */
+  const displayImage = (images) => {
+    images.forEach(image => document.write(`<img src="../assets/images/${image}" width="198px">`));
+  }
+  displayImage(['animal1.jpg','flower1.jpg','nature1.jpg']); // 인자
+</script>
+<hr>
+
+
+
+<!-- 문제2. print() 함수 구현하기 -->
+<h4>print() 함수</h4>
+<script>
+  /*
+    print() 함수
+    1. 기능
+      전달된 인자가 배열이면 forEach()를 이용한 순회 출력 아니면 그냥 출력하는 함수
+    2. 인자
+      임의의 인자(배열 또는 배열 아닌 모든 것) 1개
+    3. 반환
+      없음
+  */
+  const print = (param) => {
+    if(Array.isArray(param)) {
+      param.forEach(element => document.write(element + ','));
+    }else{
+      document.write(param);
+    }
+  }
+  print([1,2,3]);
+  print('hello');
+
+
+  const print2 = (param) => {
+    if(Array.isArray(param)) {
+      param.forEach(element => document.write(element + ','));
+    }else {
+      document.write(param);
+    }
+  }
+  print2([4,5,6]);
+  print2('hi !');
+
+
+</script>
+<hr>
+
+</body>
+</html>

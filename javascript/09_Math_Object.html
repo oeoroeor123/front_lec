@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<!--
+    Math 내장 객체
+
+    1. Math.abs(x)
+      → x 의 절대값을 반환
+
+    2. Math.pow(base, exponent)
+      → base 를 exponent 거듭제곱한 숫자 값을 반환
+
+    3. Math.sqrt(x)
+      → x 에 루트를 씌운 값을 반환
+      → x 가 음수라면 NaN 반환
+
+    4. Math.ceil(x)
+      → x 보다 크거나 같은 숫자(이상) 중 가장 작은 숫자를 integer 로 반환 (올림)
+
+    5. Math.floor(x)
+      → x 보다 작거나 같은 숫자(이하) 중 가장 큰 숫자를 integer 로 반환 (내림)
+
+    6. Math.round(x)
+      → x 를 반올림한 값과 가장 가까운 정수 값을 반환 (반올림)
+
+    7. Math.trunc(x)
+      → x 의 소수부분을 제거하고 숫자의 정수 부분을 반환 (절사)
+
+    8. Math.max(value1[, value2[, ...]])
+      → 주어진 숫자 중 가장 큰 수를 반환
+      → 숫자가 아닌 값이 전달되면 NaN 반환
+      → 전달값이 없는 경우 -Infinity 반환
+
+    9. Math.min(value1[, value2[, ...]])
+      → 주어진 숫자 중 가장 작은 값을 반환
+      → 숫자가 아닌 값이 전달되면 NaN 반환
+      → 전달값이 없는 경우 Infinity 반환
+
+    10. Math.random()
+      → 0.0 이상 1.0 미만의 부동 소수점 의사 난수 반환
+      → 암호학적으로 안전한 난수를 제공하지 않으므로 보안과 관련된 용도로 사용 금지(대신 window.crypto.getRandomValues() 메소드 권장)
+-->
+
+<h4>Math 내장 객체</h4>
+<script>
+  const value = 12.5678;
+  document.write(`<div>올림 : ${Math.ceil(value)}</div>`);
+  document.write(`<div>내림 : ${Math.floor(value)}</div>`);
+  document.write(`<div>반올림 : ${Math.round(value)}</div>`);
+  document.write(`<div>절사 : ${Math.trunc(value)}</div>`);
+
+  /*
+  처음에 시작하는 수는 마지막 +''을 따름
+  0.0 <= Math.ramdom() < 1.0
+  0.0 <= Math.ramdom() * 10 < 10.0
+  0 <= Math.floor(Math.ramdom() * 10) < 10
+  1 <= Math.floor(Math.ramdom() * 10 + 1) < 11
+  */
+ let lotto = Math.floor(Math.random() * 45 + 1); // 1부터 45개 난수
+ document.write(`<div>${lotto}</div>`);
+
+</script>
+
+<hr>
+
+<!-- 문제1. getRandomDouble() 함수 구현하기 -->
+<h4>getRandomDouble() 함수</h4>
+<script>
+  /*
+    getRandomDouble() 함수
+    1. 기능
+      두 인자 사이의 임의의 실수 난수를 반환하는 함수
+    2. 인자
+      1) 최솟값
+      2) 최댓값
+    3. 반환
+      최솟값과 최댓값 사이의 임의의 실수 난수
+  */
+
+  /*
+  ** min <= Math.rambom() < max
+  ** min <= Math.rambom() * (max-min) + min < max
+  0.0 <= Math.rambom() < 1.0 
+  0.0 <= Math.rambom() * 2 < 2.0 
+  3.0 <= Math.rambom() * 2 + 3 < 5.0 
+  */
+
+ //안줄인 버전
+ const getRandomDouble = (min, max) => {
+  return Math.random() * (max - min) + min; // 시작 값 : 최솟갓 min
+ }
+ document.write(`<div>${getRandomDouble(3,5)}</div>`);
+</script>
+<hr>
+
+
+
+<!-- 문제2. getRandomInt() 함수 구현하기 -->
+<h4>getRandomInt() 함수</h4>
+<script>
+  /*
+    getRandomInt() 함수
+    1. 기능
+      두 인자 사이의 임의의 정수 난수를 반환하는 함수(최솟값은 포함, 최댓값은 제외)
+    2. 인자
+      1) 최솟값
+      2) 최댓값
+    3. 반환
+      최솟값과 최댓값 사이의 임의의 정수 난수
+  */
+ // 줄인 버전
+ const getRandomInt = (min,max) => Math.floor(Math.random() * (max - min) + min);
+ document.write(`<div>${getRandomInt(2,6)}</div>`); // 2~5사이 난수만 출력됨
+  
+</script>
+<hr>
+
+
+
+<!-- 문제3. getRandomIntInclude() 함수 구현하기 -->
+<h4>getRandomIntInclude() 함수</h4>
+<script>
+  /*
+    getRandomIntInclude() 함수
+    1. 기능
+      두 인자 사이의 임의의 정수 난수를 반환하는 함수(최솟값, 최댓값 모두 포함)
+    2. 인자
+      1) 최솟값
+      2) 최댓값
+    3. 반환
+      최솟값과 최댓값 사이의 임의의 정수 난수
+  */
+  const getRandomIntInclude = (min,max) => Math.floor(Math.random() * (max - min +1) + min);
+  document.write(`<div>${getRandomIntInclude(1,3)}</div>`); // 1~3사이 난수가 출력됨
+</script>
+<hr>
+
+
+
+<!-- 문제4. getCeil() 함수 구현하기 -->
+<h4>getCeil() 함수</h4>
+<script>
+  /*
+    getCeil() 함수
+    1. 기능
+      원하는 소수 자릿수 지정이 가능한 올림 함수
+    2. 인자
+      1) 올림 처리할 값
+      2) 올림 처리할 자릿 수 (디폴트 0 설정)
+    3. 반환
+      올림 결과 값
+    4. 예시
+      getCeil(12345.12345, 2)  ===  12345.13
+      getCeil(12345.12345, 1)  ===  12345.2
+      getCeil(12345.12345, 0)  ===  12346
+      getCeil(12345.12345)     ===  12346
+      getCeil(12345.12345, -1) ===  12350
+      getCeil(12345.12345, -2) ===  12400
+      getCeil(12345.12345, -3) ===  13000
+  */
+
+   /*
+      getCeil(12345.12345, 2)  ===  12345.13
+      Step1) 12345.12345 * 100 === 1234512.345 > 100 곱하면 소수점이 2칸 뒤로 이동 
+      Step2) Math.ceil(1234512.345) === 1234513
+      Step3) 1234513 / 100 === 12345.13
+  */
+
+  /*
+      getCeil(12345.12345, 1)  ===  12345.2
+      Step1) 12345.12345 * 10 === 123451.2345
+      Step2) Math.ceil(123451.2345) === 123452
+      Step3) 123452 / 10 === 12345.2
+  */
+
+  /*
+      getCeil(12345.12345, -1) ===  12350
+      Step1) 12345.12345 * 1/10 === 1234.512345
+      Step2) Math.ceil(1234.512345) === 1235
+      Step3) 1235 / 1/10 === 12350
+  */
+
+  const getCeil = (value, digit = 0) => {
+    const power = Math.pow(10, digit); //10의 제곱
+    return Math.ceil(value * power) / power; // 상황별로 Math.floor(), Math.round(), Math.trunc() 대체 가능
+  }
+  document.write(`<div>소수 2자리 올림 : ${getCeil(12345.12345,2)}</div>`);
+  document.write(`<div>소수 1자리 올림 : ${getCeil(12345.12345,1)}</div>`);
+  document.write(`<div>정수 올림 : ${getCeil(12345.12345,0)}</div>`);
+  document.write(`<div>일의 자리 올림 : ${getCeil(12345.12345,-1)}</div>`);
+  document.write(`<div>십의 자리 올림 : ${getCeil(12345.12345,-2)}</div>`);
+  
+</script>
+<hr>
+
+</body>
+</html>
