@@ -127,11 +127,10 @@
   fnArrow();
 
   // 화살표 함수 연습
-  const fnThree = () => {
-    document.write(`<div>fnThree</div>`);
-  }
+  const fna = () => {}
+  document.write(`<div>fna</div>`);
 
-  fnThree();
+  fna();
 </script>
 
 <hr>
@@ -196,7 +195,7 @@
   fnSpread(100, 200);
 
   // 함수 선언
-  function fnSpread(...params) { // 인자의 개수가 0개 이상, params : 배열로 처리
+  function fnSpread(...params) { // 인자의 개수가 0개 이상이고 갯수 제한 없이 인자 생성 가능, params : 배열로 처리
     for(let i = 0; i < params.length; i++) {
       document.write(`<div> ${params[i]}</div>`);
     }
@@ -278,17 +277,14 @@
 
 
   /* 연습용 */
-  function fnO(outerparam2) {
-
-    function fnI(innerparam2) {
-      document.write(`<div>${outerparam2}</div>`);
-      document.write(`<div>${innerparam2}</div>`);
+  function fna2(param1) {
+    function fnb(param2) {
+      document.write(`<div>${param1}</div>`);
+      document.write(`<div>${param2}</div>`);
     }
-
-    fnI(outerparam2);
+    fnb(param1);
   }
-
-  fnO(200);
+  fna2(10); // = param1
 </script>
 
 <hr>
@@ -331,8 +327,8 @@
   function fnPw() {
     document.write(`<div>PW CHECK</div>`);
   }
-
   fnLogin2(fnId, fnPw);
+
 </script>
 
 <hr>
@@ -359,14 +355,14 @@
     fnSub1();
     fnSub2();
   }
-  const fnSCheck = function() {
-    document.write(`<div>Session Check</div>`);
+  const fnsc = function() {
+    document.write(`<div>SS C</div>`);
   }
-  const fnSClean = function() {
-    document.write(`<div>Session Clean</div>`);
+  const fnsc2 = function() {
+    document.write(`<div>SS C2</div>`);
   }
 
-  fnLogout2(fnSCheck, fnSClean);
+  fnLogout2(fnsc, fnsc2);
 </script>
 
 <hr>
@@ -384,13 +380,18 @@
 
 
   /* 연습용 */
-  function fnSignUp2(fnSub) {
+  function fnsp(fnSub) {
     fnSub();
   }
 
-  fnSignUp2(function() {
-    document.write(`<div>Authentication</div>`);
+  fnsp(function() {
+    document.write(`<div>A C</div>`);
   });
+
+  fnsp(function() {
+    document.write(`<div>바로 호출</div>`);
+  })
+
 </script>
 
 <hr>
@@ -458,12 +459,12 @@
 
 <h4>화살표 함수 다루기</h4>
 <script>
-// * return (반환)이 있을 경우, document.write로 호출 / 없을 경우 함수이름();로 호출
 // 인자 x / 반환 x : 본문 실행 코드가 1개로 중괄호{} 생략
 const fnArgRet1 = () => document.write('<div>fnArgRet1</div>');
 fnArgRet1 ();
 
 // 인자 O / 반환 X : 단일 매개 변수로 소괄호() 생략 & 실행 코드 1개로 중괄호{} 생략
+// 함수 호출 시, 인자 10이 param으로 옮겨졌으니, 호출 시 ${param}을 넣어 호출 필요
 const fnArgRet2 = param => document.write(`<div> fnArgRet2 : ${param}</div>`);
 fnArgRet2 (10);
 
@@ -474,7 +475,6 @@ document.write(`<div>fnArgRet3 : ${fnArgRet3()}</div>`); // 함수 호출 위해
 // 인자 O / 반환 O : 단일 매개 변수로 () 생략 & 실행 코드 1개로 {} 생략, 함수 본문 return 1개로 생략
 const fnArgRet4 = param => param + 1; // return 생략
 document.write(`<div>fnArgRet4 : ${fnArgRet4(10)}</div>`);
-
 </script>
 
 <!-- 문제1. checkWeight() 함수 구현하기 -->
