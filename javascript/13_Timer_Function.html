@@ -37,6 +37,13 @@
 
   // 동작 취소 방법
   clearTimeout(timeoutId); // 타이머 함수의 동작을 취소시킴
+
+  /* 연습용 */
+  const timeoutId2 = setTimeout(() => {
+    consol.log('hello!');
+  },1000);
+  console.log(timeoutId2);
+  clearTimeout(timeoutId2);
 </script>
 
 <hr>
@@ -50,7 +57,18 @@
     if(count === 10) {
       clearInterval(intervalId); // 10번째 hello에서 동작 취소하기
     }
-  }, 1000); // 1000밀리초(1초) 마다 반복 동작  
+  }, 1000); // 1000밀리초(1초) 마다 반복 동작 
+
+  /* 연습용
+  let count2 = 0;
+  const intervalId2 = setInterval(() => {
+    count++;
+    console.log(count + 'st hi');
+    if(count === 5) {
+      clearInterval(intervalId2);
+    }
+  },1000);
+  */
 </script>
 
 <!-- 문제. timer() 함수 구현하기 -->
@@ -66,7 +84,7 @@
       없음
   */
  // 1. setInterval 함수 방식
- /*
+  /*
   const timer = (seconds) => {
       const timerId = setInterval(() => {
         if(seconds === 0) {
@@ -77,7 +95,7 @@
       }, 1000);
     }
     timer(5);
- */
+  */
 
  // 2. setTimeout 함수 방식 (recursive call(=재귀적 호출) : 본문 안에서 자기 자신을 부르는 호출)
    const timer = (seconds) => {
