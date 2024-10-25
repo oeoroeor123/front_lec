@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<!--
+    Date 내장 객체
+
+    1. Date() 생성자
+        → 특정 날짜와 시간을 가진 Date 객체를 반환
+        → 호출 형식
+          1) new Date()
+          2) new Date(value)                 // value : unix timestamp (1970/01/01 00:00초부터 카운트하는 시간_단위:밀리초)
+          3) new Date(dateString)            // 문자열 인식의 경우 동작이 일관적이지 않으므로 사용 안 하기를 권장
+          4) new Date(year, monthIndex)      // ★monthIndex : 0 ~ 11 
+          5) new Date(year, monthIndex, day)
+          6) new Date(year, monthIndex, day, hours)
+          7) new Date(year, monthIndex, day, hours, minutes)
+          8) new Date(year, monthIndex, day, hours, minutes, seconds)
+          9) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
+
+    2. Date.now()
+        → 현재 시간을 타임스탬프 형식으로 반환
+
+    3. Date.prototype.getFullYear()
+        → 현지 시간 기준 연도 반환
+    
+    4. Date.prototype.getMonth()
+        → 현지 시간 기준 월 반환 (0 - 11)
+
+    5. Date.prototype.getDate()
+        → 현지 시간 기준 일 반환 (1 - 31)
+
+    6. Date.prototype.getDay()
+        → 현지 시간 기준 요일 반환 (일 - 토 => 0 - 6)
+
+    7. Date.prototypye.getHours()
+        → 현지 시간 기준 시 반환 (0 - 23)
+
+    8. Date.prototype.getMinutes()
+        → 현지 시간 기준 분 반환 (0 - 59)
+
+    9. Date.prototype.getSeconds()
+        → 현지 시간 기준 초 반환 (0 - 59)
+    
+    10. Date.prototype.getTime()
+        → 지정된 날짜의 시간에 해당하는 숫자 값 반환 (타임스탬프 값 반환)
+-->
+<h4>Date 내장 객체</h4>
+<script>
+  // 현재 날짜와 시간
+  const srtNow = Date(); // string 타입 > 문자열 타입이라, string 객체 특징들로 활용 가능
+  const objNow = new Date(); // object 타입 > date 객체 특징들을 활용 가능 (date 체크할때 주로 활용) 
+  document.write(`<div>strNow: ${srtNow}, ${typeof srtNow}</div>`);
+  document.write(`<div>objNow: ${objNow}, ${typeof objNow}</div>`);
+
+  // 특정 날짜와 시간
+  const datetime = new Date(2024,0,1,12,0,0); //2024-01-01 12:00:00 > 월 : 원하는 달 -1 
+  document.write(`<div>datetime : ${datetime}</div>`);  
+
+  // 자동 고침 기능
+  const someday = new Date(2024,0,32); // 2024-01-32 > 없는 날
+  document.write(`<div>someday : ${someday}</div>`); // 2024-02-01로 고쳐서 출력 됨
+
+  // 단위 추출
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const dayNo = now.getDay();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
+  const millis = now.getMilliseconds();
+  
+  // 2024-10-25 금요일 오전 9:55:30.456 만들기
+  const result = year + '-' + 
+                (month < 10 ? '0' + month : month) + '-' + 
+                (day < 10 ? '0' + day : day) + ' ' + 
+                ['일', '월', '화', '수', '목', '금', '토'][dayNo] + '요일 ' +
+                (hour >= 12 ? '오후' : '오전') + ' ' +
+                (hour <= 12 ? hour : hour % 12) + ':' + // 오후 12시 넘어가면 시간 % 12의 나머지 값으로 표기 (ex_13시 > 1시) 
+                (minute < 10 ? '0' + minute : minute) + ':' +
+                (second < 10 ? '0' + second : second) + '.' + 
+                (millis < 10 ? '00' + millis : millis < 100 ? '0' + millis : millis);
+  document.write(`<div>${result}</div>`);
+
+  // 타임스탬프
+  const timestamp1 = now.getTime();
+  const timestamp2 = Date.now();
+  document.write(`<div>${timestamp1}</div>`);
+  document.write(`<div>${timestamp2}</div>`);
+  </script>
+
+
+<!-- 문제. stopWatch() 함수 구현하기 -->
+<h4>stopWatch() 함수</h4>
+<script>
+  /*
+    stopWatch() 함수
+    1. 기능
+      인자로 전달된 함수를 수행하는데 걸린 시간을 반환하는 함수
+    2. 인자
+      수행할 함수
+    3. 반환
+      함수를 수행하는데 걸린 시간(밀리초)
+  */
+
+  const stopWatch = (callback) => {
+    const beginTime = Date.now();
+    callback();
+    const endTime = Date.now();
+    return endTime - beginTime;
+  }
+
+  const justDoIt = () => {
+    let total = 0;
+    for(let i = 0; i < 1000000; i++) {
+      total += i;
+    }
+    document.write(`<div>${total}</div>`);
+  }
+
+  const dueTime = stopWatch(justDoIt);
+  document.write(`<div>소요시간 : ${dueTime}millis</div>`);
+</script>
+<hr>
+
+</body>
+</html>

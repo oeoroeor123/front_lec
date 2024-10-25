@@ -76,6 +76,10 @@
     
     8. Array.prototype.entries()
         → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
+
+    9. Array.prototype.join([separator])
+        → 배열의 각 요소를 separator로 연결한 하나의 문자열을 반환
+        → separator 생략 시 콤마(,)로 연결
 -->
 <h4>Array 객체 생성하기</h4>
 <script>
@@ -168,6 +172,10 @@
  for(const [i, element] of months.entries()) {
   console.log(i, element);
  }
+
+ // Array.prototype.join()
+ document.write(`<div>${months.join()}</div>`); // 디폴트 콤마(,)로 출력
+ document.write(`<div>${months.join('/')}</div>`);
 
 </script>
 
