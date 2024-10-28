@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+</head>
+<body>
+
+<!--
+    이벤트 (Event)
+    1. DOM 객체에서 발생하는 어떤 시그널을 의미한다.
+    2. 시스템에 일어나는 사건(Action) 또는 발생(Occurrence)을 의미한다.
+    3. 주요 이벤트 발생 방식
+      1) 사용자의 액션에 의해서 발생(클릭, 키보드 입력, 마우스 움직임 등)
+      2) API의 이벤트 생성
+-->
+  
+<!--
+    이벤트 핸들러 (Event Handler)
+    1. 이벤트에 반응하기 위해서는 이벤트가 발생했을 때 동작할 함수(Function)가 필요하다.
+    2. 이벤트가 발생했을 때 동작하는 함수를 이벤트 핸들러(Event Handler) 또는 이벤트 리스너(Event Listener) 라고 한다.
+      1) 이벤트 핸들러 : 이벤트가 발생하면 실행되는 코드
+      2) 이벤트 리스너 : 이벤트가 발생했는지 체크
+    3. 이벤트 핸들러가 동작할 때는 발생한 이벤트에 대한 각종 정보가 담긴 "이벤트 객체(Event Object)"가 인자로 자동 전달된다.
+    4. 이벤트가 발생했을 때 이벤트 핸들러를 할당하는 방법을 "이벤트 모델(Event Model)"이라고 한다.
+      1) 고전 이벤트 모델
+      2) 표준 이벤트 모델
+      3) 인라인 이벤트 모델
+-->
+
+<!--
+    이벤트 객체 (Event Object)
+    1. 이벤트가 발생했을 때 브라우저에 의해서 만들어진다.
+    2. 발생한 이벤트에 관한 상세 정보(이벤트 종류, 이벤트 대상 등)가 저장되어 있다.
+    3. 이벤트 핸들러의 매개변수로 이벤트 객체를 선언하고 사용한다.
+    4. 관례적으로 이벤트 객체의 이름은 "event" 또는 "evt" 를 사용하는 것이 좋다.
+    5. 주요 인스턴스 속성
+      1) type
+        (1) 이벤트의 종류를 의미한다.
+        (2) 마우스 이벤트  : click, mouseover, mouseout, mousemove, mousedown, mouseup
+        (3) 폼 요소 이벤트 : submit, focus
+        (4) 키보드 이벤트  : keydown, keypress, keyup
+        (5) 포커스 이벤트  : focus, blur
+      2) target
+        (1) 이벤트가 발생한 가장 안쪽의 요소를 의미한다.
+        (2) 실제 이벤트가 시작된 지점을 의미한다.
+        (3) 이벤트 전파(이벤트 버블링, Event Bubbling)가 진행되어도 target은 변하지 않는다.
+      3) currentTarget
+        (1) 이벤트가 발생한 지점이 아닌 실제 이벤트를 처리하는 요소를 의미한다.
+        (2) 이벤트 전파(이벤트 버블링, Event Bubbling)가 진행되는 경우 실제 이벤트가 시작된 지점과 다른 요소일 수 있다.
+    6. 주요 인스턴스 메소드
+      1) preventDefault()           : 취소 가능한 이벤트를 취소한다.
+      2) stopImmediatePropagation() : 다른 곳에서 이 특정 이벤트를 호출할 수 없도록 방지한다.
+      3) stopPropagation()          : 이벤트 전파(이벤트 버블링, Event Bubbling)를 막는다. (사용 비추천)
+-->
+
+<!--
+    고전 이벤트 모델
+    1. 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property)를 활용하는 방법이다.
+    2. 이벤트 종류(타입) 앞에 "on" 키워드를 붙이면 이벤트 핸들러 프로퍼티가 완성된다.
+      예) onclick, onkeydown, onsubmit, onfocus 등
+    3. 하나의 이벤트에 하나의 이벤트 리스너를 할당할 수 있다. (마지막 이벤트 리스너만 동작)
+    4. 이벤트 할당 방식 예시
+      1) 익명 함수
+        const button = document.getElementById('button');
+        button.onclick = function(event){
+
+        }
+      2) 화살표 함수
+        const button = document.getElementById('button');
+        button.onclick = (event) => {
+
+        }
+      3) 기명 함수
+        const button = document.getElementById('button');
+        function eventHandler(){
+
+        }
+        button.onclick = eventHandler; > () 없이 호출
+-->
+<h4>고전 이벤트 모델</h4>
+<div>
+  <div id="box1">box1</div>
+  <div><button type="button" id="btn1">btn1</button></div>
+</div>
+
+<div>
+  <div id="box2">box2</div>
+  <div><button type="button" id="btn2">btn2</button></div>
+</div>
+
+  <script>
+    /* 고전 이벤트 모델 동작 확인 */
+    const box1 = document.getElementById('box1');
+    const btn1 = document.getElementById('btn1');
+
+    // 이벤트 종류 : type 속성, click
+    // 이벤트 속성 : onclick
+    // 이벤트 대상 : target 속성, btn1
+    // 이벤트 리스너(=핸들러) : function(event)
+    // 이벤트 객체 : 이벤트 리스너의 매개변수 (event)
+    btn1.onclick = function(event) {
+      box1.textContent = '이벤트 종류 : ' + event.type;
+      box1.textContent += ', 이벤트 대상 : ' + event.target.textContent; // event.target 객체의 값을 정리해서 불러옴 > .textcontent
+    }
+
+    /* 이벤트 리스너 등록 확인 */
+    const box2 = document.getElementById('box2');
+    const btn2 = document.getElementById('btn2');
+
+    function do1(event) {
+      box2.textContent += '이벤트 종류 : ' + event.type;
+    }
+    function do2(event) {
+      box2.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+    }
+    btn2.onclick = function(event) { //브라우저를 통한 이벤트 객체를 받는 곳
+      do1(event);
+      do2(event);
+    }
+  </script>
+  
+  <!-- 연습용 -->
+  <div>
+    <div id="box5">box5</div>
+    <div><button type="button" id="btn5">btn5</button></div>
+  </div>
+
+  <script>
+    const box5 = document.getElementById('box5');
+    const btn5 = document.getElementById('btn5');
+
+    btn5.onmouseover = function(event) {
+      box5.textContent = '이벤트 종류 : ' + event.type;
+      box5.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+    }
+  </script>
+
+  <div>
+    <div id="box6">box6</div>
+    <div><button type="button" id="btn6">btn6</button></div>
+  </div>
+
+  <script>
+    const box6 = document.getElementById('box6');
+    const btn6 = document.getElementById('btn6');
+
+    function do3(event) {
+      box6.textContent += '이벤트 종류 : ' + event.type; 
+    }
+    function do4(event) {
+      box6.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+    }
+    btn6.onmouseover=function(event) {
+      do3(event);
+      do4(event);
+    }
+
+
+  </script>
+
+<!--
+    표준 이벤트 모델
+    1. EventTarget 인터페이스의 addEventListener() 메소드를 호출하는 방식이다.
+    2. addEventListener 구문
+      1) addEventListener(type, listener)
+      2) addEventListener(type, listener, options)
+      3) addEventListener(type, listener, useCapture)
+    3. 하나의 이벤트에 여러 개의 이벤트 리스너를 할당할 수 있다.
+    4. 이벤트 할당 방식 예시
+      1) 익명 함수
+        const button = document.getElementById('button');
+        button.addEventListener('click', function(event){
+
+        })
+      2) 화살표 함수
+        const button = document.getElementById('button');
+        button.addEventListener('click', (event) => {
+
+        })
+      3) 기명 함수
+        const button = document.getElementById('button');
+        function eventHandler(){
+
+        }
+        button.addEventListener('click', eventHandler);
+-->
+<h4>표준 이벤트 모델</h4>
+<div>
+  <div id="box3">box3</div>
+  <div><button type="button" id="btn3">btn3</button></div>
+</div>
+<script>
+  /* 표준 이벤트 모델 동작 확인 */
+  const box3 = document.getElementById('box3');
+  const btn3 = document.getElementById('btn3');
+
+  btn3.addEventListener('click', function(event){
+    box3.textContent += '이벤트 타입 : ' + event.type;
+  })
+  btn3.addEventListener('click',function(event){
+    box3.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+  })
+</script>
+
+<!-- 연습용 -->
+<div>
+  <div id = "box7">box7</div>
+  <div><button type="button" id="btn7">btn7</button></div>
+</div>
+<script>
+  const box7 = document.getElementById('box7');
+  const btn7 = document.getElementById('btn7');
+
+  btn7.addEventListener('mouseover', function(event) {
+    box7.textContent += '이벤트 타입 :' + event.type;
+  })
+  btn7.addEventListener('mouseover', function(event) {
+    box7.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+  })
+</script>
+
+<hr>
+
+<!--
+    인라인 이벤트 모델
+    1. DOM 객체에 직접 이벤트 핸들러 속성(Event Handler Attribute) 등록하고 이벤트 핸들러를 호출하는 방식이다.
+    2. 이벤트 핸들러를 만들 때 주로 기명 함수를 사용한다.
+    3. 이벤트 할당 방식 예시
+      <button type="button" onclick="inline()">
+      function inline(){
+
+      }
+-->
+<h4>인라인 이벤트 모델</h4>
+<div>
+  <div id="box4">box4</div>
+  <div><button type="button" id="btn4" onclick="fnInline(event)">btn4</button></div>
+</div>
+<script>
+  const box4 = document.getElementById('box4');
+  function fnInline(event) {
+    box4.textContent = '이벤트 종류 : ' + event.type;
+  }
+</script>
+
+<!-- 연습용 -->
+ <div>
+  <div id="box8">box8</div>
+  <div><button type="button" id="btn8" onmouseover="fnIn(event)">btn8</button></div>
+ </div>
+ <script>
+  const box8 = document.getElementById('box8');
+  function fnIn(event) {
+    box8.textContent = '이벤트 대상 : ' + event.target.textContent;
+  }
+ </script>
+<!--
+    이벤트 전파
+    1. 이벤트 버블링(Event Bubbling)이라고 한다.
+    2. 거의 모든 이벤트는 전파되지만, 모두 되는 것은 아니다. (예: focus 이벤트는 전파되지 않는다.)
+    3. 한 요소에 이벤트가 발생하면 이 요소에 할당된 이벤트 핸들러가 동작한 뒤 부모 요소의 이벤트 핸들러가 동작되는 것을 의미한다.
+    4. 최상위 조상에 도달할때까지 이 과정은 계속해서 반복된다.
+    5. 이벤트 객체의 stopPropagation() 메소드를 이용해 이벤트 전파를 중지할 수 있다. 다만 특별한 이유가 없다면 중지할 필요가 없다.
+-->
+
+<!-- 
+    이벤트 위임 (Event Delegation)
+    1. 자식에게 할당된 이벤트는 부모에게 전파된다.
+    2. 자식이 처리해야 할 이벤트를 의도적으로 부모가 처리하게끔 만들 수 있다. 이를 이벤트 위임이라고 한다.
+    3. 대표적으로 모든 자식들에게 반복해서 여러 번 할당해야 할 이벤트를 최상위 조상에게 한 번만 할당하는 방식이 있다.
+-->
+
+<!--
+    디폴트 이벤트
+    1. 어떤 DOM 객체는 특정 이벤트를 이미 가지고 있다.
+    2. 주요 디폴트 이벤트
+      1) <a> 태그는 click 하면 href 속성으로 이동한다.
+      2) <form> 태그는 submit 하면 action 속성으로 입력 폼 요소의 데이터를 전송하고 입력 폼 요소의 값을 초기화한다.
+    3. 이벤트 객체의 preventDefault() 메소드를 호출하면 디폴트 이벤트 동작을 막을 수 있다.
+-->
+
+
+
+<!-- 문제1. 로그인 -->
+<h4>로그인</h4>
+<div>
+  <form id="login-form" action="/user/login.do" method="post">
+    <div><input type="text" id="id" placeholder="Id"></div>
+    <div><input type="password" id="password" placeholder="Password"></div>
+    <div><button type="submit">Log In</button></div>
+  </form>
+</div>
+<script>
+  // 입력된 아이디와 비밀번호가 없으면 로그인을 막는 코드를 작성하시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제2. 전구 -->
+<h4>전구</h4>
+<div>
+  <div id="light" class="light-on"></div>
+  <div><button type="button" id="switch-btn" data-power="on" style="width: 60px; text-align: center;">ON</button></div>
+</div>
+<style>
+  #light {
+    width: 59px;
+    height: 91px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  .light-on {
+    background-image: url('../assets/images/lightOn.png');
+  }
+  .light-off {
+    background-image: url('../assets/images/lightOff.png');
+  }
+</style>
+<script>
+  // 버튼을 누를때마다 ON/OFF 버튼 텍스트와 lightOn.png/lightOff.png 이미지를 변환하도록 구현하시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제3. 비밀번호 -->
+<h4>비밀번호 보이기</h4>
+<style>
+  .eye {
+    margin-left: 20px;
+  }
+</style>
+<div>
+  <input type="password" id="pw"><span id="eye" class="eye"><i class="fa-regular fa-eye-slash"></i></span>
+</div>
+<script>
+  // 아이콘을 클릭할때마다 입력한 비밀번호를 보여주거나 숨기도록 구현하시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제4. 이미지 슬라이드 -->
+<h4>이미지 슬라이드</h4>
+<div class="image-slide-wrap">
+  <div class="image-slide-info">
+    <button type="button" id="prev-btn">이전</button><span id="image-no">1 / 5</span><button type="button" id="next-btn">다음</button>
+  </div>
+  <div id="image-container"></div>
+</div>
+<style>
+  .image-slide-wrap div {
+    box-sizing: border-box;
+  }
+  .image-slide-wrap {
+    width: 286px;
+    height: 207px;
+    margin: 10px auto;
+  }
+  .image-slide-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  #image-no {
+    margin: 0 10px;
+  }
+  #image-container {
+    width: 286px;
+    height: 177px;
+    background-image: url('../assets/images/architecture1.jpg');
+    background-size: cover;
+  }
+</style>
+<script>
+  // architecture1.jpg ~ architecture5.jpg 를 이용하여 이미지 슬라이드를 만드시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제5. 썸네일과 원본 이미지 -->
+<h4>썸네일과 원본 이미지</h4>
+<div class="thumbnail-wrap">
+  <div id="original-image"></div>
+  <div id="thumbnail-images">
+    <div data-file-name="flower1.jpg" style="background-image: url('../assets/images/flower1.jpg');"></div>
+    <div data-file-name="flower2.jpg" style="background-image: url('../assets/images/flower2.jpg');"></div>
+    <div data-file-name="flower3.jpg" style="background-image: url('../assets/images/flower3.jpg');"></div>
+    <div data-file-name="flower4.jpg" style="background-image: url('../assets/images/flower4.jpg');"></div>
+    <div data-file-name="flower5.jpg" style="background-image: url('../assets/images/flower5.jpg');"></div>
+  </div>
+</div>
+<style>
+  .thumbnail-wrap {
+    width: 576px;
+    height: 314px;
+    margin: 10px auto;
+  }
+  .thumbnail-wrap div {
+    box-sizing: border-box;
+  }
+  .thumbnail-wrap div {
+    box-sizing: border-box;
+  }
+  #original-image {
+    width: 384px;
+    height: 256px;
+    margin: 10px auto;
+    background-image: url('../assets/images/flower1.jpg');
+    background-size: 100%;
+  }
+  #thumbnail-images {
+    width: 384px;
+    height: 60px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  #thumbnail-images > div {
+    width: 70px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+<script>
+  // 5개의 각 thumbnail 이미지에 마우스를 가져다대면 해당 이미지를 original-image로 표시하시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제6. 전체/개별 선택 구현하기 -->
+<h4>전체/개별 선택</h4>
+<div>
+  <div class="choice">
+    <input type="checkbox" id="chk-all">
+    <label for="chk-all">전체선택</label>
+  </div>
+  <div class="choice">
+    <input type="checkbox" id="chk-one" class="chk-each">
+    <label for="chk-one">개별선택1</label>
+  </div>
+  <div class="choice">
+    <input type="checkbox" id="chk-two" class="chk-each">
+    <label for="chk-two">개별선택2</label>
+  </div>
+  <div class="choice">
+    <input type="checkbox" id="chk-three" class="chk-each">
+    <label for="chk-three">개별선택3</label>
+  </div>
+</div>
+<style>
+  .choice input[type=checkbox] {
+    display: none;
+  }
+  .choice label {
+    padding-left: 20px;
+    background-image: url('../assets/images/check1.png');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 0 3px;
+    cursor: pointer;
+  }
+  .choice input[type=checkbox]:checked + label {
+    background-image: url('../assets/images/check2.png');
+  }
+</style>
+<script>
+  // 전체 선택 체크 상자와 개별 선택 체크 상자가 상호 연동되도록 구현하시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제7. 검색 화면 구성하기 -->
+<h4>검색 화면 구성하기</h4>
+<div style="margin-bottom: 20px;">
+  <input type="radio" name="category" id="title" onclick="displaySearchBox(this)"><label for="title">제목</label>
+  <input type="radio" name="category" id="date" onclick="displaySearchBox(this)"><label for="date">날짜</label> 
+  <input type="radio" name="category" id="price" onclick="displaySearchBox(this)"><label for="price">가격</label>
+</div>
+<div id="title-search" class="search-boxes">
+  <form method="get" action="/search.do">
+    <div>제목 검색</div>
+    <input type="text" name="title" placeholder="검색할 제목을 입력하세요"> 
+    <button type="submit">검색</button>
+  </form>
+</div>
+<div id="date-search" class="search-boxes">
+  <form method="get" action="/search.do">
+    <div>날짜 검색</div>
+    <input type="date" name="start"> - 
+    <input type="date" name="end"> 
+    <button type="submit">검색</button>
+  </form>
+</div>
+<div id="price-search" class="search-boxes">
+  <form method="get" action="/search.do">
+    <div>가격 검색</div>
+    <input type="number" name="min-price" placeholder="최소 가격"> - 
+    <input type="number" name="max-price" placeholder="최대 가격">
+    <button type="submit">검색</button>
+  </form>
+</div>
+<style>
+  .search-boxes {
+    display: none;
+  }
+</style>
+<script>
+  // 선택한 카테고리의 검색 화면만 화면에 나타내시오.
+
+</script>
+<hr>
+
+
+
+<!-- 문제8. 계산기 -->
+<h4>계산기</h4>
+<table id="calculator">
+  <tr>
+    <th colspan="4">
+      <input type="text" value="0" id="result">
+    </th>
+  </tr>
+  <tr>
+    <th><button type="button" onclick="calculate(this)">(</button></th>
+    <th><button type="button" onclick="calculate(this)">)</button></th>
+    <th><button type="button" onclick="calculate(this)">←</button></th>
+    <th><button type="button" onclick="calculate(this)">AC</button></th>
+  </tr>
+  <tr>
+    <th><button type="button" onclick="calculate(this)">7</button></th>
+    <th><button type="button" onclick="calculate(this)">8</button></th>
+    <th><button type="button" onclick="calculate(this)">9</button></th>
+    <th><button type="button" onclick="calculate(this)">/</button></th>
+  </tr>
+  <tr>
+    <th><button type="button" onclick="calculate(this)">4</button></th>
+    <th><button type="button" onclick="calculate(this)">5</button></th>
+    <th><button type="button" onclick="calculate(this)">6</button></th>
+    <th><button type="button" onclick="calculate(this)">*</button></th>
+  </tr>
+  <tr>
+    <th><button type="button" onclick="calculate(this)">1</button></th>
+    <th><button type="button" onclick="calculate(this)">2</button></th>
+    <th><button type="button" onclick="calculate(this)">3</button></th>
+    <th><button type="button" onclick="calculate(this)">-</button></th>
+  </tr>
+  <tr>
+    <th><button type="button" onclick="calculate(this)">0</button></th>
+    <th><button type="button" onclick="calculate(this)">.</button></th>
+    <th><button type="button" onclick="calculate(this)">=</button></th>
+    <th><button type="button" onclick="calculate(this)">+</button></th>
+  </tr>
+</table>
+<style>
+  #calculator{
+    border: 2px solid black;
+  }
+  #calculator input[type="text"]{
+    width: 210px;
+    height: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: right;
+    border: 1px solid black;
+    overflow: hidden;
+  }
+  #calculator button {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+  }
+</style>
+<script>
+  // 계산기가 동작할 수 있도록 구현하시오.
+  
+</script>
+<hr>
+
+</body>
+</html>
