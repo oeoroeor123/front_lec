@@ -131,10 +131,9 @@
 <div id = "box2" class="primary-box">box2</div>
 <div id = "box3" class="primary-box">box3</div>
 <script>
-/* 메소드에 id 또는 class가 붙은 경우 #/. 넣지 않아도 되나, 붙지 않으면 꼭 넣어야줘야 함 > 구분 필요 */
 /* 한가지만 불러들일땐 id, 여러개 불러들일땐 class 활용 */
 
-/* HTMLElement 객체 반환 */
+/* HTMLElement(데이터를 하나만 불러들일때) 객체 반환 */
 const box1 = document.getElementById('box1'); 
 console.log(box1);
 
@@ -144,7 +143,7 @@ console.log(box2);
 const boxes = document.querySelector('.primary-box'); // 동일한 class 선택자가 여러개 있는 경우 첫번째 요소만 출력됨
 console.log(boxes);
 
-/* HTMLCollection 객체 반환 */
+/* HTMLCollection(데이터를 여러개 불러들일때) 객체 반환 > 배열처럼 인덱스 지원 */
 const dives = document.getElementsByTagName('div');
 console.log(dives);
 
@@ -159,7 +158,7 @@ console.log(primaryboxes);
 
 <hr>
 
-<!--
+<!-- 태그 / 텍스트 중 작업하고자 하는 부분을 구분해 작성 
     1. 기존 DOM 객체 변경
       1) 요소(태그) : Element.innerHTML = 'HTML';
       2) 텍스트 : Node.textContent = 'TEXT';
@@ -182,7 +181,7 @@ console.log(primaryboxes);
 <!--
     CSS 적용
     1. HTMLElement 객체의 style 속성을 이용한다.
-    2. inline 방식으로 CSS 가 처리된다. (style 속성을 주면 기존 CSS는 덮어쓰기된다.)
+    2. inline 방식으로 CSS 가 처리된다. (처리 우선 순위가 높아 style 속성을 주면 기존 CSS는 덮어쓰기된다.)
     3. CSS 속성 적용 방식
       1) 마침표 : CSS 속성 이름을 Dash Case 에서 Camel Case 로 바꿔서 사용한다.
       2) 대괄호 : CSS 속성 이름을 문자열 형식으로 그대로 사용한다.
@@ -212,6 +211,7 @@ const googleLink = document.getElementById('google-link');
       1) 가져오기 : getAttribute(attribute)
       2) 수정하기 : setAttribute(attribute, value)
       3) 삭제하기 : removeAttribute(attribute)
+
     ★ 프로퍼티 (속성)
       객체가 가지고 있는 속성으로, Attribute와 다름 > 둘 다 속성으로 불리지만, 차이점을 알고 있어야 함
 -->
@@ -228,8 +228,8 @@ const googleLink = document.getElementById('google-link');
   console.log('class : ', id.getAttribute('class'));
   console.log('readonly : ', id.getAttribute('readonly')); // readonly 속성 값이 없으므로 빈 문자열로 출력됨
 
-  // Attribute 수정하기
-  id.setAttribute('name', 'user-id'); // name = "id" -> name = "user-id"로 변경
+  // Attribute 수정하기 (저장하기)
+  id.setAttribute('name', 'user-id'); // name = "id" -> name = "user-id"로 변경해 부여
   id.setAttribute('value', 'admin'); // value = "admin" 부여
 
   // Attribute 삭제하기
@@ -273,6 +273,7 @@ const googleLink = document.getElementById('google-link');
 
 <!--
     HTML Attribute vs DOM Property
+    화면 출력 차이 : HTML Attribute (출력) / DOM Property (미출력)
 
     1. 주요 특징 | HTML Attribute     | DOM Property
     -------------|--------------------|----------------------------------
@@ -288,6 +289,21 @@ const googleLink = document.getElementById('google-link');
     checked 속성 |  checked="checked" |  checked: true
 -->
 
+<h4>속성 차이 연습</h4>
+<div>
+  <input type="radio" name="gender" id="man" value="man" checked>
+  <label for="man">남자</label>
+  <input type="radio" name="gender" id="woman" value="woman">
+  <label for="woman">여자</label>
+</div>
+<script>
+  const man = document.getElementById('man'); // 태그 속성 (Attribute)
+  man.removeAttribute('checked');
+
+  const woman = document.getElementById('woman');
+  // woman.setAttribute('checked', 'checked'); // 태그 속성 checked : 속성 이름하고 값이 같기에 이름만 적어주는 형태, 불러들일때 두번 적어줘야 함
+  woman.checked = true; // 객체 속성 checked : true, false로 구분해서 적음
+</script>
 
 
 <!-- 문제1. printScores() 함수 구현하기 -->
