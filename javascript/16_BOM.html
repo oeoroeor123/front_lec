@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  
+<!--
+    BOM
+    1. Browser Object Model (브라우저 객체 모델)
+    2. 브라우저의 구성 요소를 JavaScript 객체로 저장한 뒤 사용할 수 있다.
+    3. 주요 BOM 요소
+      1) window   : 브라우저 화면 자체를 의미한다. (모든 JavaScript 객체의 최상위 객체이다.) (코드상에서 생략할 수 있다.)
+      2) history  : 방문했던 경로를 기억하고 있는 객체이다.
+      3) location : 경로(URL)를 관리하는 객체이다.
+      4) screen   : 브라우저 화면 정보를 관리하는 객체이다.
+-->
+<h4>history 객체</h4>
+<div>
+  <button type="button" onclick="history.back()">뒤로가기</button> <!-- history 객체에 back 메소드를 호출하면 뒤로감 -->
+  <button type="button" onclick="history.forward()">앞으로가기</button>
+  <button type="button" onclick="history.go(-2)">뒤로뒤로</button>
+  <button type="button" onclick="history.go(2)">앞으로앞으로</button>
+</div>
+
+<hr>
+
+<h4>location 객체</h4>
+<div>
+  <button type="button" onclick="letsGo()"> Let's go</button>
+  <button type="button" onclick="location.reload()">새로고침</button>
+  <button type="button" onclick="location.reload(true)">항상 새로고침</button>
+</div>
+<script>
+  const letsGo = () => {
+    // 이동 (일반)
+    location.href = 'https://www.naver.com/'; // 동일 > location = 'https://www.naver.com/'
+    // 이동 (주소 히스토리를 남기지 않는 방식)
+    location.replace('https://www.naver.com/');
+  }
+</script>
+
+<hr>
+
+<h4>screen 객체</h4>
+<script>
+  // 보고 있는 화면의 정보를 표시
+  document.write(`<div>화면 높이 : ${screen.height}px</div>`);
+  document.write(`<div>화면 너비 : ${screen.width}px</div>`);
+  document.write(`<div>화면 가용 높이 : ${screen.availHeight}px</div>`); // 작업 표시줄 제외한 높이
+  document.write(`<div>화면 가용 너비 : ${screen.availWidth}px</div>`);
+</script>
+
+<hr>
+
+<h4>window 객체</h4>
+<div>
+  <button type="button" id="open-btn">팝업 열기</button>
+  <button type="button" id="close-btn">팝업 닫기</button>
+</div>
+<div>
+  <input type="text" id="parent" placeholder="팝업창으로 전달할 메시지">
+  <button type="button" id="send-btn">전송</button>
+</div>
+<div id="child-msg"></div>
+<script>
+  // 전역 변수 지정
+  var popup = null; // 팝업 창을 저장할 변수
+  var opened = false; // 팝업 창 오픈 여부 (초기 값 : 열리지 않음)
+  
+  const openPopup = () => {
+
+    // dont_open_today 쿠키 값 가져오기 (쿠키가 없으면 undefined 처리)
+    const dontOpenToday = Cookies.get('dont_open_today');
+    
+    // 팝업 창 화면 중앙에 띄우기
+    const width = 320;
+    const height = 480;
+    const top = (screen.height - height) / 2; // 화면 높이 - 팝업 높이 / 2
+    const left = (screen.width - width) / 2; 
+
+    if(opened) {
+      alert('팝업 창은 이미 열려있습니다.');
+      return; // openPopup 함수 실행 종료
+    }
+    if(dontOpenToday) {
+      alert ('오늘은 팝업 창을 열 수 없습니다.');
+      return; // openPopup 함수 실행 종료
+    }
+
+    popup = open('popup.html', '', `width=${width}, height=${height}, top=${top}, left=${left}`); // 팝업창 열기
+    opened = true;
+    if(!popup) { // 팝업이 열리지 않으면
+      alert('팝업 차단을 해제해 주세요.');
+    }
+  }
+
+  const closePopup = () => {
+    if(opened) {
+      popup.close(); // 팝업 창 닫힘
+      opened = false;
+    }
+  }
+
+  const sendPopup = () => {
+    /* 
+    popup.document.getElementById('parent-msg') > 인식을 위해
+    popup 창 본문의 모든 코드를 읽은 뒤 처리하는 'load 이벤트'를 사용
+    - script가 상단에 배치될 경우 전체 코드를 읽은 뒤 이벤트 처리 내용을 확인하여 처리함
+      (현재는 popup 파일이 다른 파일로 되어있기에 load 이벤트를 사용해 처리함)
+    - 고전 이벤트를 사용함
+    */
+
+    popup.onload = function(event) {
+      popup.document.getElementById('parent-msg').textContent = window.document.getElementById('parent').value; // window:현재 창
+    }
+  }
+  
+  const openBtn = document.getElementById('open-btn');
+  const closeBtn = document.getElementById('close-btn');
+  const sendBtn = document.getElementById('send-btn');
+  openBtn.addEventListener('click', openPopup);
+  closeBtn.addEventListener('click', closePopup);
+  sendBtn.addEventListener('click', openPopup);
+  sendBtn.addEventListener('click', sendPopup);
+</script>
+
+<hr>
+
+<!-- 문제. 링크 버튼 -->
+<h4>링크 버튼</h4>
+<div>
+  <button type="button" id="go-btn"></button>
+</div>
+<script>
+  // 객체 site의 정보를 이용하여 버튼 텍스트와 버튼 링크를 만드시오.
+  const site = {
+    name: '네이버',
+    url: 'https://www.naver.com',
+  }
+  const goBtn = document.getElementById('go-btn');
+  goBtn.textContent = site.name;
+  goBtn.addEventListener('click',function(event) {
+    location.href = site.url;
+  })
+</script>
+
+</body>
+</html>

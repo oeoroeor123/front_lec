@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>popup</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    .title {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">팝업</h1>
+  
+  <div id="parent-msg"></div>
+
+  <div>
+    <input type="text" id="child" placeholder="부모 창으로 전송할 데이터">
+    <button type="button" id="send-btn">전송</button>
+  </div>
+
+  <script>
+    const sendBtn = document.getElementById('send-btn');
+
+    sendBtn.addEventListener('click', function(event) {
+     opener.document.getElementById('child-msg').textContent = window.document.getElementById('child').value; // opener : 날 열어준 창 (부모 창)
+    })
+  </script>
+
+<hr>
+
+  <div>
+    <input type="checkbox" id="chk-dont-open">
+    <label for="chk-dont-open"> 오늘 더 이상 열지 않기</label>
+    <button type="button" onclick="popupClose()">닫기</button>
+  </div>
+  <script>
+
+    /*
+    "오늘 더 이상 열지 않기" 체크상자를 체크하면,
+    "dont_open_today" 라는 이름의 쿠키에 ture 값을 저장한다.
+    해당 쿠키는 1일 동안 모든 경로("/")에서 확인할 수 있다.
+    */
+
+    const popupClose = () => {
+      const chkDontOpen = document.getElementById('chk-dont-open');
+      if(chkDontOpen.checked) {
+        Cookies.set('dont_open_today', true, { // js 쿠키 생성
+          expires: 1, // 유효기간
+          path: '/',
+        })
+      }
+      window.close(); // 현재 창 닫기
+    }
+
+  </script>
+
+</body>
+</html>
