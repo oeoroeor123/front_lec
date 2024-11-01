@@ -294,8 +294,31 @@
           .then((finalResult) => { finalResult 처리 })
           .catch((error) => { error 처리 })
 -->
+<h4>Promise Chaining > then() 메소드 연결</h4>
+<div>
+  <button type="button" onclick="methodChain()">체이닝</button>
+</div>
+<script>
+  const methodChain = () => {
+    new Promise((resolve,reject) => {
+      const xhr = new XMLHttpRequest();
+      const method = 'GET';
+      const url = 'https://thetestrequest.com/authors/1';
+      xhr.open(method,url);
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText));
+      })
+      xhr.send();
+    })
+    // 화살표 함수 뒤에 값이 있으면 반환(return)으로 인식 > {return} 생략한 상태
+    .then(responseData => responseData.name) 
+    .then(name => name + '님')
+    .then(authorName => console.log(authorName));
+  }
+</script>
 
 
+<hr>
 
 <!-- 문제1. Promise 를 이용하여 FakeAPI 정보 가져오기 -->
 <h4>FakeAPI 정보 가져오기</h4>
@@ -304,11 +327,30 @@
   <button type="button" onclick="fakeApi('https://thetestrequest.com/authors/2')">authors 2</button>
 </div>
 <script>
+  const fakeApi = (url) => { // fakeApi 함수를 매개변수로 가져오기
+    new Promise((resolve,reject) => {
+      const xhr = new XMLHttpRequest();
 
+      const method = 'GET';
+      // url은 위에서 이미 저장됨
+      xhr.open(method,url)
+
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText)); // 성공 : .then 메소드에 있는 함수를 호출
+      })
+      xhr.addEventListener('error', function(event) {
+        reject(xhr.status); // 실패 : .catch 메소드에 있는 함수를 호출
+      })
+      xhr.send();
+    }).then(responseData => {
+      console.log(responseData)
+    }).catch(status => {
+      console.log(status);
+    })
+  } 
 </script>
+
 <hr>
-
-
 
 <!-- 문제2. Promise 를 반환하는 함수를 이용하여 FakeAPI 정보 가져오기 -->
 <h4>Promise 반환 함수</h4>
@@ -316,8 +358,30 @@
   <button type="button" id="get-info-btn">getInfo</button>
 </div>
 <script>
-
+const getInfo = (url,method) => {
+  // 함수 반환을 위해 return 사용
+  return new Promise((resolve,reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method,url); // 함수 호출 부분에 인자값으로 메소드, url 값 입력
+    
+    xhr.addEventListener('load', function(event) {
+      resolve(JSON.parse(xhr.responseText));
+    })
+    xhr.addEventListener('error', function(event) {
+      reject(xhr.status);
+    })
+    xhr.send();
+  })
+}
+document.getElementById('get-info-btn').addEventListener('click', function(event) {
+  // promise를 반환하는 getInfo 함수 호출 시 뒤에 then, catch 값을 연결해 사용함
+  // xhr.open(method,url);쪽 내용을 지우고 매개변수와 인자값에 내용을 넣어줌
+  getInfo('https://thetestrequest.com/authors/1', 'GET')
+  .then(responseData => console.log(responseData))
+  .catch(status => console.log(status));
+})
 </script>
+
 <hr>
 
 </body>

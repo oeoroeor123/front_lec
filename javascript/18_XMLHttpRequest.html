@@ -11,8 +11,13 @@
     XMLHttpRequest (XHR)객체
 
     1. 서버와 상호작용할 때 사용하는 객체이다.
-    2. 웹 페이지를 새로 고침하지 않고 지정한 서버로부터 데이터를 가져올 수 있다. (AJAX 프로그래밍) // 댓글 추가, 좋아요 등 
+    2. 비동기 요청 생성 객체 : 웹 페이지를 새로 고침하지 않고 지정한 서버로부터 데이터를 가져올 수 있다. (AJAX 프로그래밍) // 댓글 추가, 좋아요 등 
     3. XML 뿐만 아니라 모든 종류의 데이터를 받아올 수 있다.
+
+    ★ 서브밋 : 요청 시 페이지가 바뀌면서 요청함 (생성자_형태는 아직 안배움)
+    VS 비동기 요청 : 요청 시 페이지 안바뀌고 요청함
+    각자의 특징을 체크하고 서브밋과 비동기 요청 중 1가지로 요청을 수행할 필요가 있음
+    → 추후 서브밋 작동법 배우면 특징 별로 골라서 사용하기
 -->
 
 <!--
@@ -259,10 +264,11 @@
           const authors = responseData.getElementsByTagName('object');
           let str = ''; // 빈문자열로 초기화
           for(const author of authors) {
-            // getElementsByTagName('id')[0] : TagName을 통해 가져온 html 컬렉션 중 id만 가져온다.
-            // .textContent : id 문자열만 반환한다.
             console.log(author.getElementsByTagName('id')[0].textContent);
             str += '<div class="author">';
+            // getElementsByTagName('id')[0] : TagName을 통해 가져온 html 컬렉션(유사 배열) 중 요청하고자하는 태그 이름을 ('')에 넣음
+            // 각 태그는 1개씩이니 [0]을 붙힘, 만약 태그가 2개 있다면 0 또는 1 중에 원하는 항목을 선택해서 반환
+            // .textContent : id 문자열만 반환한다.
             str += '  <div>ID : ' + author.getElementsByTagName('id')[0].textContent + '</div>';
             str += '  <div>NAME : ' + author.getElementsByTagName('name')[0].textContent + '</div>';
             str += '  <div>EMAIL : ' + author.getElementsByTagName('email')[0].textContent + '</div>';
